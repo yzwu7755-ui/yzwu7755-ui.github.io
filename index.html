@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="科技暗黑风个人网站与个人 Agent，展示候选人优势、完整经历和 STAR 项目案例。"
+    />
+    <title>吴臻愿 | Personal Agent</title>
+    <link rel="icon" href="./public/favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="network-canvas" aria-hidden="true"></canvas>
+    <div class="scanline" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回顶部">
+        <span class="brand-mark">YZ</span>
+        <span>吴臻愿</span>
+      </a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="#agent">Agent</a>
+        <a href="#timeline">经历</a>
+        <a href="#projects">项目</a>
+        <a href="#architecture">架构</a>
+        <a href="mailto:your.email@example.com">联系</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="availability">Personal Agent · GitHub Pages + Cloudflare Worker</p>
+          <p class="eyebrow">AI Application Engineer</p>
+          <h1 class="nameplate">吴 臻 愿</h1>
+          <div class="cursor-line" aria-hidden="true">—|</div>
+          <p class="subtitle">
+            我最大的优势：把模糊需求快速做成可用的 AI 产品。
+          </p>
+          <div class="hero-actions" aria-label="核心入口">
+            <a class="action-chip primary" href="#agent">
+              <span>01</span>
+              直接问 Agent
+            </a>
+            <a class="action-chip" href="#projects">
+              <span>02</span>
+              核心项目经历
+            </a>
+            <a class="action-chip subtle" href="./profile/resume.md" target="_blank" rel="noreferrer">
+              <span>03</span>
+              简历
+            </a>
+          </div>
+          <div class="skill-marquee" aria-label="核心技能">
+            <div>
+              GitHub Pages ✦ Cloudflare Worker ✦ OpenRouter Free ✦ Static HTML/CSS/JS ✦ Personal Agent ✦ STAR Project Q&A ✦ Free Model Router ✦ API Secret Proxy ✦
+              GitHub Pages ✦ Cloudflare Worker ✦ OpenRouter Free ✦ Static HTML/CSS/JS ✦ Personal Agent ✦ STAR Project Q&A ✦ Free Model Router ✦ API Secret Proxy ✦
+            </div>
+          </div>
+        </div>
+
+        <aside id="agent" class="agent-shell hero-agent" aria-label="个人 Agent">
+          <div class="agent-aura" aria-hidden="true"></div>
+          <div class="agent-header">
+            <div>
+              <p class="eyebrow">Recruiter Console</p>
+              <strong>个人 Agent</strong>
+              <span>回答基于经历、项目和简历资料</span>
+            </div>
+            <span id="agent-status" class="status">演示模式</span>
+          </div>
+
+          <div id="chat-log" class="chat-log" aria-live="polite">
+            <div class="message agent">
+              <p>
+                你好，我是这位候选人的个人 Agent。你可以问我：某段经历细节、项目 STAR、技术栈、候选人角色、和 JD 的匹配度。
+              </p>
+            </div>
+          </div>
+
+          <div class="suggestions" aria-label="推荐问题">
+            <button type="button" data-prompt="请用 30 秒向 HR 介绍我，突出最大优势">30 秒介绍</button>
+            <button type="button" data-prompt="按学校到工作的顺序解释我的经历">经历脉络</button>
+            <button type="button" data-prompt="用 STAR 法则讲一个核心项目">STAR 项目</button>
+            <button type="button" data-prompt="我在主要项目里分别扮演什么角色？">项目角色</button>
+            <button type="button" data-prompt="如果我投 AI 应用工程师，匹配点和风险点是什么？">岗位匹配</button>
+            <button type="button" data-prompt="帮 HR 生成 5 个可以继续追问我的问题">追问建议</button>
+          </div>
+
+          <form id="chat-form" class="chat-form">
+            <label for="message-input" class="sr-only">输入问题</label>
+            <textarea
+              id="message-input"
+              name="message"
+              rows="3"
+              placeholder="问经历细节、项目 STAR、技术栈，或粘贴 JD..."
+              required
+            ></textarea>
+            <button type="submit"><span>TRANSMIT</span></button>
+          </form>
+        </aside>
+      </section>
+
+      <section class="section" id="timeline">
+        <div class="section-title">
+          <p class="eyebrow">Career</p>
+          <h2>Experience Timeline</h2>
+          <p>从学校到工作经历。点击任意经历查看阶段详情、角色、关联项目和可追问方向。</p>
+        </div>
+
+        <div id="experience-list" class="experience-list" aria-label="完整经历列表"></div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-title">
+          <p class="eyebrow">Project Matrix</p>
+          <h2>核心项目经历</h2>
+          <p>点击项目卡片进入详情，按 STAR 法则展示背景、任务、行动、结果，以及技术栈和你的角色。</p>
+        </div>
+
+        <div id="project-grid" class="project-grid" aria-label="项目列表"></div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-title">
+          <p class="eyebrow">Skill Architecture</p>
+          <h2>技能结构</h2>
+          <p>按真实工作流组织技能：从界面实现、Agent 接入，到部署上线和产品表达。</p>
+        </div>
+
+        <div id="skill-grid" class="skill-grid" aria-label="技能列表"></div>
+      </section>
+
+      <section class="section" id="architecture">
+        <div class="section-title">
+          <p class="eyebrow">Site Architecture</p>
+          <h2>个人站点架构</h2>
+          <p>这个站点使用纯静态前端 + Cloudflare Worker + OpenRouter 免费模型，避免购买服务器，也避免在前端暴露 API Key。</p>
+        </div>
+
+        <div class="architecture-grid" aria-label="个人站点技术架构">
+          <article class="architecture-card wide">
+            <span class="architecture-index">01</span>
+            <h3>技术栈</h3>
+            <div class="architecture-tags">
+              <span>GitHub Pages</span>
+              <span>HTML / CSS / JavaScript</span>
+              <span>Cloudflare Worker</span>
+              <span>OpenRouter Free</span>
+              <span>Static Config</span>
+              <span>STAR Prompt</span>
+            </div>
+          </article>
+
+          <article class="architecture-card flow-card">
+            <span class="architecture-index">02</span>
+            <h3>请求链路</h3>
+            <ol class="flow-list">
+              <li>HR 打开 GitHub Pages 静态页面</li>
+              <li>浏览器请求 Cloudflare Worker</li>
+              <li>Worker 使用 Secret 中的 OpenRouter Key</li>
+              <li>OpenRouter Free 模型生成回答</li>
+              <li>Worker 返回结果给个人 Agent 聊天框</li>
+            </ol>
+          </article>
+
+          <article class="architecture-card">
+            <span class="architecture-index">03</span>
+            <h3>部署步骤</h3>
+            <ol>
+              <li>GitHub Pages 托管网站根目录</li>
+              <li>Cloudflare Workers 创建 `personal-agent-api`</li>
+              <li>粘贴 `worker/index.js`</li>
+              <li>添加 Secret：`OPENROUTER_API_KEY`</li>
+              <li>把 Worker URL 写入 `config.js`</li>
+            </ol>
+          </article>
+
+          <article class="architecture-card">
+            <span class="architecture-index">04</span>
+            <h3>API Key 申请</h3>
+            <ol>
+              <li>注册 OpenRouter</li>
+              <li>创建 API Key</li>
+              <li>不要把 Key 写进 GitHub Pages</li>
+              <li>只放入 Cloudflare Worker Secret</li>
+            </ol>
+          </article>
+
+          <article class="architecture-card guard-card">
+            <span class="architecture-index">05</span>
+            <h3>免费额度保护</h3>
+            <ul>
+              <li>模型固定为 `openrouter/free`</li>
+              <li>拒绝非免费模型</li>
+              <li>设置 `max_price` 为 0</li>
+              <li>单 IP 每日 20 次</li>
+              <li>建议 OpenRouter 不开启自动充值</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title">
+      <button class="dialog-close" type="button" aria-label="关闭项目详情">×</button>
+      <div id="project-detail"></div>
+    </dialog>
+
+    <script src="./config.js"></script>
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

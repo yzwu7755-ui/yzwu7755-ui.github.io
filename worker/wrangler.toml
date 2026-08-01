@@ -1,0 +1,8 @@
+name = "personal-agent-api"
+main = "index.js"
+compatibility_date = "2026-08-01"
+
+[vars]
+# Do not put real API keys here.
+# Set secrets with:
+# wrangler secret put OPENROUTER_API_KEY
