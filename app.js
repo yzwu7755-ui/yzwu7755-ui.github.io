@@ -231,8 +231,15 @@ const MAX_MEMORY_MESSAGES = 10;
 let conversationHistory = loadConversationHistory();
 
 if (AGENT_ENDPOINT) {
-  modelBadge.textContent = "openrouter/free";
-  freeBadge.textContent = "free";
+  modelBadge.textContent = formatModelName("openrouter/free");
+  freeBadge.textContent = "零成本保护";
+}
+
+function formatModelName(model) {
+  return String(model || "demo")
+    .replace(/:free$/i, "")
+    .replace(/\/free$/i, "")
+    .replace(/^openrouter$/i, "OpenRouter");
 }
 
 function renderProjects() {
@@ -504,8 +511,8 @@ async function askAgent(question, onChunk) {
 
   const responseModel = response.headers.get("X-Model");
   if (responseModel) {
-    modelBadge.textContent = responseModel;
-    freeBadge.textContent = "free";
+    modelBadge.textContent = formatModelName(responseModel);
+    freeBadge.textContent = "零成本保护";
   }
 
   const contentType = response.headers.get("Content-Type") || "";
@@ -531,8 +538,8 @@ async function askAgent(question, onChunk) {
 
   const data = await response.json();
   if (data.model) {
-    modelBadge.textContent = data.model;
-    freeBadge.textContent = "free";
+    modelBadge.textContent = formatModelName(data.model);
+    freeBadge.textContent = "零成本保护";
   }
   return data.answer || "我暂时没有拿到有效回答。";
 }
@@ -557,6 +564,21 @@ function startTypewriter() {
   };
 
   tick();
+}
+
+function fitActionChipText() {
+  document.querySelectorAll(".action-chip.primary .action-label, .action-chip.primary .action-cue").forEach((element) => {
+    element.style.transform = "";
+    const parentWidth = element.parentElement?.clientWidth || 0;
+    const textWidth = element.scrollWidth;
+
+    if (!parentWidth || !textWidth || textWidth <= parentWidth - 12) {
+      return;
+    }
+
+    const scale = Math.max(0.72, Math.min(1, (parentWidth - 12) / textWidth));
+    element.style.transform = `scale(${scale})`;
+  });
 }
 
 async function handleQuestion(question) {
@@ -610,6 +632,9 @@ renderProjects();
 renderSkills();
 renderExperience();
 startTypewriter();
+fitActionChipText();
+
+window.addEventListener("resize", fitActionChipText);
 
 projectGrid.addEventListener("click", (event) => {
   const card = event.target.closest("[data-project-index]");

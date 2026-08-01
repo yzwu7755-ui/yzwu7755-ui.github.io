@@ -72,11 +72,12 @@
           <div class="agent-header">
             <div>
               <strong>个人智能体</strong>
-              <span>回答基于成长经历、项目和知识库资料；PS：基于 AI 大模型生成，结果以本人回答为准。</span>
+              <span>回答基于成长经历、项目和知识库资料</span>
+              <small class="agent-ps">PS：基于 AI 大模型生成，结果以本人回答为准。</small>
             </div>
             <div class="model-status" aria-label="模型状态">
-              <span><small>Model</small><strong id="agent-model">demo</strong></span>
-              <span><small>Price</small><strong id="agent-free">free</strong></span>
+              <span><small>模型</small><strong id="agent-model">demo</strong></span>
+              <span><small>策略</small><strong id="agent-free">零成本保护</strong></span>
             </div>
           </div>
 
@@ -172,7 +173,7 @@
           <article class="ai-lab-card">
             <span>05 / Memory</span>
             <h3>流式输出与多轮记忆</h3>
-            <p>前端用 sessionStorage 保存最近几轮问答，把上下文随请求发送给 Worker；Worker 组合系统提示词、知识库和历史消息后调用流式模型接口，让对话能连续追问并实时显示生成过程。</p>
+            <p>前端用 sessionStorage 保存最近几轮问答，把上下文随请求发送给 Worker；Worker 组合系统提示词、知识库和历史消息后调用流式模型接口，让对话能连续追问并实时显示生成过程，同时提高单次输出上限并识别 length 截断提示继续追问。</p>
           </article>
         </div>
       </section>
@@ -217,7 +218,7 @@
             <div class="orbit-node node-model">
               <span>模型</span>
               <strong>OpenRouter Free Model</strong>
-              <small>Model: openrouter/free · Price: free</small>
+              <small>Model: OpenRouter · Strategy: 零成本保护</small>
             </div>
             <div class="orbit-node node-guard">
               <span>费用保护</span>

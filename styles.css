@@ -416,8 +416,8 @@ h3 {
   grid-template-columns: 1fr;
   gap: 6px;
   justify-items: center;
-  min-height: 88px;
-  padding: 14px 10px;
+  min-height: clamp(68px, 7.2vw, 88px);
+  padding: clamp(10px, 1.4vw, 14px) clamp(8px, 1.2vw, 12px);
 }
 
 .action-chip::before {
@@ -466,19 +466,24 @@ h3 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: clamp(18px, 2.1vw, 25px);
+  font-size: clamp(16px, 2vw, 24px);
   font-weight: 1000;
+  max-width: 100%;
   white-space: nowrap;
+  transform-origin: center;
 }
 
 .action-chip.primary .action-cue {
   border: 1px solid rgba(255, 156, 62, 0.28);
   border-radius: 999px;
   background: rgba(255, 156, 62, 0.08);
-  padding: 4px 7px;
-  font-size: 10px;
+  max-width: 100%;
+  padding: 4px clamp(6px, 0.8vw, 9px);
+  font-size: clamp(8px, 0.85vw, 10px);
   letter-spacing: 0.02em;
   white-space: nowrap;
+  transform: scale(var(--cue-scale, 1));
+  transform-origin: center;
 }
 
 .skill-marquee {
@@ -785,7 +790,8 @@ h3 {
 }
 
 .agent-header strong,
-.agent-header span {
+.agent-header span,
+.agent-header small {
   display: block;
 }
 
@@ -798,6 +804,13 @@ h3 {
   margin-top: 5px;
   color: var(--muted);
   font-size: 13px;
+}
+
+.agent-ps {
+  margin-top: 6px;
+  color: rgba(143, 160, 180, 0.72);
+  font-size: 12px;
+  line-height: 1.55;
 }
 
 .status {
@@ -815,17 +828,17 @@ h3 {
 .model-status {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(92px, 1fr));
   gap: 8px;
+  min-width: 210px;
   max-width: 260px;
 }
 
 .model-status span {
   display: grid;
   gap: 3px;
-  min-width: 92px;
+  min-width: 0;
   border: 1px solid rgba(255, 156, 62, 0.3);
   border-radius: 16px;
   background:
@@ -833,6 +846,7 @@ h3 {
     rgba(0, 0, 0, 0.26);
   padding: 8px 10px;
   box-shadow: 0 0 24px rgba(255, 156, 62, 0.09);
+  text-align: center;
 }
 
 .model-status small {
@@ -846,7 +860,7 @@ h3 {
 .model-status strong {
   color: var(--green);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.25;
   word-break: break-word;
 }

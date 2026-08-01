@@ -4,6 +4,7 @@ const MAX_HISTORY_MESSAGES = 10;
 const MAX_HISTORY_CHARS = 1200;
 const MAX_REQUESTS_PER_IP_PER_DAY = 20;
 const MAX_KB_CHARS = 28000;
+const MAX_COMPLETION_TOKENS = 1600;
 const KB_CACHE_TTL_MS = 10 * 60 * 1000;
 const DEFAULT_KB_BASE_URL = "https://yzwu7755-ui.github.io/profile/";
 
@@ -236,7 +237,7 @@ async function callOpenRouter({ apiKey, message, history, systemPrompt }) {
       model: FREE_MODEL,
       messages: buildMessages({ systemPrompt, history, message }),
       temperature: 0.35,
-      max_tokens: 760,
+      max_tokens: MAX_COMPLETION_TOKENS,
       provider: {
         allow_fallbacks: false,
       },
@@ -269,7 +270,7 @@ async function streamOpenRouter({ apiKey, message, history, systemPrompt, knowle
       model: FREE_MODEL,
       messages: buildMessages({ systemPrompt, history, message }),
       temperature: 0.35,
-      max_tokens: 760,
+      max_tokens: MAX_COMPLETION_TOKENS,
       stream: true,
       provider: {
         allow_fallbacks: false,
@@ -289,6 +290,7 @@ async function streamOpenRouter({ apiKey, message, history, systemPrompt, knowle
   const decoder = new TextDecoder();
   const encoder = new TextEncoder();
   let buffer = "";
+  let finishReason = "";
 
   const readable = new ReadableStream({
     async start(controller) {
@@ -306,9 +308,12 @@ async function streamOpenRouter({ apiKey, message, history, systemPrompt, knowle
           buffer = lines.pop() || "";
 
           for (const line of lines) {
-            const text = parseOpenRouterStreamLine(line);
-            if (text) {
-              controller.enqueue(encoder.encode(text));
+            const event = parseOpenRouterStreamLine(line);
+            if (event.finishReason) {
+              finishReason = event.finishReason;
+            }
+            if (event.text) {
+              controller.enqueue(encoder.encode(event.text));
             }
           }
         }
@@ -319,10 +324,19 @@ async function streamOpenRouter({ apiKey, message, history, systemPrompt, knowle
         }
 
         for (const line of buffer.split("\n")) {
-          const text = parseOpenRouterStreamLine(line);
-          if (text) {
-            controller.enqueue(encoder.encode(text));
+          const event = parseOpenRouterStreamLine(line);
+          if (event.finishReason) {
+            finishReason = event.finishReason;
           }
+          if (event.text) {
+            controller.enqueue(encoder.encode(event.text));
+          }
+        }
+
+        if (finishReason === "length") {
+          controller.enqueue(
+            encoder.encode("\n\n（本次回答较长，已接近单次输出上限；你可以继续追问“继续展开”。）"),
+          );
         }
       } finally {
         controller.close();
@@ -346,19 +360,23 @@ async function streamOpenRouter({ apiKey, message, history, systemPrompt, knowle
 function parseOpenRouterStreamLine(line) {
   const trimmed = line.trim();
   if (!trimmed || !trimmed.startsWith("data:")) {
-    return "";
+    return { text: "", finishReason: "" };
   }
 
   const data = trimmed.slice(5).trim();
   if (!data || data === "[DONE]") {
-    return "";
+    return { text: "", finishReason: "" };
   }
 
   try {
     const parsed = JSON.parse(data);
-    return parsed.choices?.[0]?.delta?.content || "";
+    const choice = parsed.choices?.[0] || {};
+    return {
+      text: choice.delta?.content || choice.message?.content || "",
+      finishReason: choice.finish_reason || "",
+    };
   } catch {
-    return "";
+    return { text: "", finishReason: "" };
   }
 }
 
