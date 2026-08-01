@@ -103,33 +103,53 @@ const projects = [
 const skillGroups = [
   {
     title: "Java 基础",
-    summary: "扎实 Java 基础与并发/JVM 理解，能支撑复杂业务系统的性能与稳定性治理。",
-    skills: ["集合", "内存模型", "同步器", "线程池", "线程变量", "虚拟机调优"],
+    summary: "熟练使用 Java，掌握集合、IO、反射、动态代理、泛型，并深入理解并发编程与 JVM 调优。",
+    skills: ["集合", "IO", "反射", "JMM", "AQS", "线程池", "ThreadLocal", "JVM"],
   },
   {
-    title: "Spring 与微服务",
-    summary: "熟悉 Spring 生态与 Spring Cloud Alibaba，具备服务治理、限流降级、灰度发布经验。",
-    skills: ["Spring Boot", "MyBatis", "Nacos", "OpenFeign", "Sentinel", "Gateway"],
+    title: "Spring 生态",
+    summary: "熟练使用 Spring、Spring Boot、Spring MVC、MyBatis、MyBatis-Plus，理解核心原理并具备扩展经验。",
+    skills: ["Spring", "Spring Boot", "Spring MVC", "MyBatis", "事务管理", "自动装配"],
   },
   {
-    title: "数据平台能力",
-    summary: "围绕海量订单做分库分表、数据迁移、查询优化、缓存一致性和消息可靠性治理。",
-    skills: ["MySQL", "多版本并发控制", "分库分表", "Redis 分布式锁", "Kafka", "RabbitMQ"],
+    title: "微服务架构",
+    summary: "熟悉 Spring Cloud Alibaba 微服务体系，具备服务治理、限流、熔断、降级及灰度发布实践。",
+    skills: ["Nacos", "OpenFeign", "Sentinel", "Gateway", "限流", "灰度发布"],
   },
   {
-    title: "搜索与一致性",
-    summary: "熟练使用 Elasticsearch 建设异构查询平台，处理索引设计、同步链路和一致性闭环。",
-    skills: ["Elasticsearch", "索引映射", "查询语句", "Canal", "日志 + 消息同步", "数据对账"],
+    title: "数据库",
+    summary: "熟悉 MySQL 底层原理，具备 SQL 调优、索引优化、分库分表、海量数据治理及迁移经验。",
+    skills: ["MySQL", "索引", "事务", "MVCC", "Binlog", "分库分表", "数据迁移"],
   },
   {
-    title: "全栈后台交付",
-    summary: "具备 Java 全栈交付能力，可独立完成后台系统从数据库、接口到前端页面的闭环。",
-    skills: ["Vue3", "TypeScript", "Element Plus", "Axios", "Pinia", "权限模型"],
+    title: "缓存与中间件",
+    summary: "熟悉 Redis 与消息中间件，具备缓存一致性、分布式锁、消息可靠性和消息堆积治理经验。",
+    skills: ["Redis", "分布式锁", "延迟队列", "Kafka", "RabbitMQ", "消息可靠性"],
+  },
+  {
+    title: "搜索与大数据",
+    summary: "熟练使用 Elasticsearch，具备海量订单异构查询平台建设和数据同步一致性治理经验。",
+    skills: ["Elasticsearch", "Mapping", "DSL", "Mustache", "Binlog + MQ", "一致性校验"],
+  },
+  {
+    title: "分布式技术",
+    summary: "熟悉分布式理论和高并发系统设计，具备分布式事务、分布式 ID、分布式锁和高可用治理经验。",
+    skills: ["CAP", "BASE", "TCC", "Seata", "分布式 ID", "高可用"],
+  },
+  {
+    title: "前端开发",
+    summary: "具备 Java 全栈能力，可独立完成管理后台页面开发、组件封装、权限控制和前后端联调。",
+    skills: ["Vue3", "TypeScript", "JavaScript", "Element Plus", "Axios", "Vite", "Pinia"],
+  },
+  {
+    title: "设计与架构",
+    summary: "熟悉常用设计模式及领域建模思想，具备平台化、组件化和公共能力抽象经验。",
+    skills: ["领域建模", "策略模式", "工厂模式", "责任链", "模板方法", "组件化"],
   },
   {
     title: "AI 工程能力",
-    summary: "使用 AI 工具提升研发效率，并理解智能体、工具调用、检索增强、工具协议等大模型应用能力。",
-    skills: ["Cursor", "Copilot", "Claude Code", "提示词", "工具协议", "检索增强"],
+    summary: "熟练使用 AI 编程工具，并掌握 Prompt Engineering、Function Calling、MCP、Agent、RAG 等能力。",
+    skills: ["Cursor", "Copilot", "Claude Code", "Prompt", "Function Calling", "MCP", "Agent", "RAG"],
   },
 ];
 
@@ -207,7 +227,7 @@ const projectDetail = document.querySelector("#project-detail");
 const dialogClose = document.querySelector(".dialog-close");
 
 if (AGENT_ENDPOINT) {
-  statusBadge.textContent = "免费在线模型";
+  statusBadge.textContent = "Model: openrouter/free · free";
 }
 
 function renderProjects() {
@@ -437,9 +457,31 @@ async function askAgent(question) {
 
   const data = await response.json();
   if (data.model) {
-    statusBadge.textContent = `在线模型 · ${data.model}`;
+    statusBadge.textContent = `Model: ${data.model} · free`;
   }
   return data.answer || "我暂时没有拿到有效回答。";
+}
+
+function startTypewriter() {
+  const cursorLine = document.querySelector(".cursor-line");
+  if (!cursorLine) {
+    return;
+  }
+
+  const text = cursorLine.dataset.text || cursorLine.textContent.trim();
+  cursorLine.textContent = "";
+  let index = 0;
+
+  const tick = () => {
+    cursorLine.textContent = text.slice(0, index);
+    index += 1;
+
+    if (index <= text.length) {
+      window.setTimeout(tick, 78);
+    }
+  };
+
+  tick();
 }
 
 async function handleQuestion(question) {
@@ -476,6 +518,7 @@ document.querySelectorAll("[data-prompt]").forEach((button) => {
 renderProjects();
 renderSkills();
 renderExperience();
+startTypewriter();
 
 projectGrid.addEventListener("click", (event) => {
   const card = event.target.closest("[data-project-index]");

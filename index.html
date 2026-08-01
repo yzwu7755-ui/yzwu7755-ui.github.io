@@ -35,7 +35,7 @@
           <p class="availability">985 科班 · Java 后端 · 交易订单平台 · AI 工程</p>
           <p class="eyebrow">分布式订单系统工程师</p>
           <h1 class="nameplate">吴 臻 愿</h1>
-          <div class="cursor-line" aria-hidden="true">Java后端｜全栈开发｜Agent开发_</div>
+          <div class="cursor-line" data-text="Java后端｜全栈开发｜Agent开发" aria-label="Java后端、全栈开发、Agent开发"></div>
           <p class="subtitle">
             我最大的优势：能把复杂交易订单系统做成稳定、可扩展、可交付的平台能力。
           </p>
@@ -47,15 +47,12 @@
           </div>
           <div class="hero-actions" aria-label="核心入口">
             <a class="action-chip primary" href="#agent">
-              <span>01</span>
-              直接问智能体
+              Chat 个人智能体
             </a>
             <a class="action-chip" href="#projects">
-              <span>02</span>
               核心项目经历
             </a>
             <a class="action-chip subtle" href="./profile/resume.md" target="_blank" rel="noreferrer">
-              <span>03</span>
               简历
             </a>
           </div>
@@ -87,12 +84,12 @@
           </div>
 
           <div class="suggestions" aria-label="推荐问题">
-            <button type="button" data-prompt="请用 30 秒向 HR 介绍我，突出最大优势">30 秒介绍</button>
-            <button type="button" data-prompt="用项目复盘方式讲订单分库分表与 ES 统一查询平台">分库分表复盘</button>
-            <button type="button" data-prompt="解释我的 Java 后端技术栈和技术深度">技术栈</button>
-            <button type="button" data-prompt="订单管理站点项目里我具体负责了什么？">项目角色</button>
-            <button type="button" data-prompt="如果我投 Java 后端或电商交易岗位，匹配点和风险点是什么？">岗位匹配</button>
-            <button type="button" data-prompt="帮技术面试官生成 5 个可以继续追问我的问题">追问建议</button>
+            <button type="button" data-prompt="请用 200 字左右做自我介绍，突出我的最大优势">自我介绍</button>
+            <button type="button" data-prompt="请按知识库完整概括我的专业技术栈，不要遗漏分类">技术栈</button>
+            <button type="button" data-prompt="请基于知识库概括我的核心项目经历，突出指标和个人角色">项目经历</button>
+            <button type="button" data-prompt="请概括我的工作经历和学历背景">工作经历和学历</button>
+            <button type="button" data-prompt="请说明我在工作和项目中的主要角色">工作中的角色</button>
+            <button type="button" data-prompt="请概括我的 AI 相关能力和可落地场景">AI 相关能力</button>
           </div>
 
           <form id="chat-form" class="chat-form">
@@ -133,7 +130,7 @@
         <div class="section-title">
           <p class="eyebrow">技能架构</p>
           <h2>技能结构</h2>
-          <p>按真实工作流组织技能：Java 基础、微服务、数据架构、ES 查询、全栈后台和 AI 工程能力。</p>
+          <p>严格按专业技能知识库整理十类能力：Java 基础、Spring 生态、微服务、数据库、中间件、搜索、分布式、前端、架构设计、AI 工程。</p>
         </div>
 
         <div id="skill-grid" class="skill-grid" aria-label="技能列表"></div>
@@ -146,87 +143,55 @@
           <p>这个站点使用纯静态前端 + 云函数代理 + 免费模型路由，避免购买服务器，也避免在前端暴露模型密钥。</p>
         </div>
 
-        <div class="architecture-grid" aria-label="个人站点技术架构">
-          <article class="architecture-card wide">
-            <span class="architecture-index">01</span>
-            <h3>技术栈</h3>
-            <div class="architecture-tags">
-              <span>静态页面托管</span>
-              <span>原生前端三件套</span>
-              <span>云函数代理层</span>
-              <span>免费模型路由</span>
-              <span>静态配置文件</span>
-              <span>项目复盘提示词</span>
-              <span>Markdown 知识库</span>
+        <div class="architecture-panel" aria-label="个人站点技术架构图">
+          <div class="architecture-map">
+            <div class="arch-node">
+              <span>访问者</span>
+              <strong>HR / 面试官</strong>
+              <small>打开个人网站并提问</small>
             </div>
-          </article>
-
-          <article class="architecture-card flow-card">
-            <span class="architecture-index">02</span>
-            <h3>请求链路</h3>
-            <ol class="flow-list">
-              <li>招聘方打开静态个人网站</li>
-              <li>浏览器请求云函数代理层</li>
-              <li>代理层读取后台保存的模型密钥</li>
-              <li>免费模型生成候选人问答</li>
-              <li>代理层把结果返回聊天框</li>
-            </ol>
-          </article>
-
-          <article class="architecture-card step-card">
-            <span class="architecture-index">03</span>
-            <h3>部署步骤</h3>
-            <div class="deploy-stages">
-              <span>静态站点根目录</span>
-              <span>云函数接口</span>
-              <span>模型密钥</span>
-              <span>接口地址配置</span>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span>静态前端</span>
+              <strong>GitHub Pages</strong>
+              <small>HTML · CSS · JavaScript</small>
             </div>
-          </article>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node highlight">
+              <span>接口代理</span>
+              <strong>Cloudflare Worker</strong>
+              <small>隐藏 API Key · 限制免费模型</small>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span>模型服务</span>
+              <strong>OpenRouter</strong>
+              <small>Model: openrouter/free · free</small>
+            </div>
+          </div>
 
-          <article class="architecture-card">
-            <span class="architecture-index">04</span>
-            <h3>模型密钥申请</h3>
-            <ol>
-              <li>注册模型服务平台账号</li>
-              <li>创建调用密钥</li>
-              <li>不要把密钥写进前端页面</li>
-              <li>只放入云函数后台变量</li>
-            </ol>
-          </article>
+          <div class="architecture-layers">
+            <div>
+              <span>知识库</span>
+              <p>Markdown：个人优势、专业技能、工作内容、工作业绩、核心项目。</p>
+            </div>
+            <div>
+              <span>安全策略</span>
+              <p>API Key 只放 Worker Secret；前端不保存密钥；`max_price` 固定为 0。</p>
+            </div>
+            <div>
+              <span>免费保护</span>
+              <p>模型固定为 `openrouter/free`，拒绝非 free 模型，单 IP 每日限制 20 次。</p>
+            </div>
+          </div>
 
-          <article class="architecture-card guard-card">
-            <span class="architecture-index">05</span>
-            <h3>免费额度保护</h3>
-            <ul>
-              <li>模型固定为 `openrouter/free`</li>
-              <li>拒绝非免费模型</li>
-              <li>设置 `max_price` 为 0</li>
-              <li>单 IP 每日 20 次</li>
-              <li>建议 OpenRouter 不开启自动充值</li>
-            </ul>
-          </article>
-
-          <article class="architecture-card">
-            <span class="architecture-index">06</span>
-            <h3>智能体知识库</h3>
-            <ol>
-              <li><code>profile/personal-advantages.md</code>：个人优势</li>
-              <li><code>profile/professional-skills.md</code>：专业技能</li>
-              <li><code>profile/work-content.md</code>：工作内容</li>
-              <li><code>profile/work-achievements.md</code>：工作业绩</li>
-              <li><code>profile/project-*.md</code>：核心项目详情</li>
-            </ol>
-          </article>
-
-          <article class="architecture-card deploy-console">
-            <span class="architecture-index">07</span>
+          <div class="deploy-console">
             <div class="deploy-head">
               <div>
-                <h3>部署控制台</h3>
-                <p>项目地址、静态站点发布源和一键推送命令统一放在这里。</p>
+                <h3>部署关键命令</h3>
+                <p>包含 GitHub Pages 推送和 Cloudflare Worker 部署。模型密钥只通过 Secret 写入，不提交到仓库。</p>
               </div>
-              <span>主分支 → 静态站点</span>
+              <span>GitHub Pages + Cloudflare Worker</span>
             </div>
 
             <div class="deploy-links">
@@ -244,21 +209,20 @@
               </a>
             </div>
 
-            <div class="deploy-steps">
-              <div><span>01</span>确认代码仓库为公开仓库</div>
-              <div><span>02</span>静态托管使用主分支根目录</div>
-              <div><span>03</span>同步发布副本并提交</div>
-              <div><span>04</span>推送到代码仓库后等待静态站点构建</div>
-            </div>
-
-            <pre class="command-block"><code>cd /Users/wuzhenyuan/Documents/Codex/2026-08-01/buy/work/github-pages-site
-ssh-add ~/.ssh/id_ed25519
-ssh -T git@github.com
-git remote set-url origin git@github.com:yzwu7755-ui/yzwu7755-ui.github.io.git
+            <pre class="command-block"><code># 1. 推送 GitHub Pages 静态站点
+cd /Users/wuzhenyuan/Documents/Codex/2026-08-01/buy/work/github-pages-site
 git add .
 git commit -m "Update personal agent site"
-git push -u origin main</code></pre>
-          </article>
+git push -u origin main
+
+# 2. 部署 Cloudflare Worker
+cd /Users/wuzhenyuan/Documents/Codex/2026-08-01/buy/worker
+npx wrangler@latest secret put OPENROUTER_API_KEY
+npx wrangler@latest deploy
+
+# 3. 确认前端接口地址
+# config.js: agentEndpoint = "https://personal-agent-api.yzwu7755.workers.dev/"</code></pre>
+          </div>
         </div>
       </section>
     </main>
