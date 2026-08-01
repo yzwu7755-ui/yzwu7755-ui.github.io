@@ -17,7 +17,7 @@
 
     <header class="site-header">
       <a class="brand" href="#top" aria-label="返回顶部">
-        <span class="brand-mark">YZ</span>
+        <span class="brand-mark">yzwu</span>
         <span>吴臻愿</span>
       </a>
       <nav class="nav-links" aria-label="页面导航">
@@ -25,7 +25,7 @@
         <a href="#timeline">经历</a>
         <a href="#projects">项目</a>
         <a href="#architecture">架构</a>
-        <a href="mailto:your.email@example.com">联系</a>
+        <a href="#agent">问答</a>
       </nav>
     </header>
 
@@ -36,15 +36,15 @@
           <h1 class="nameplate">吴 臻 愿</h1>
           <div class="cursor-line" data-text="Java后端｜全栈开发｜Agent开发" aria-label="Java后端、全栈开发、Agent开发"></div>
           <p class="subtitle">
-            最大优势：复杂交易订单系统平台化交付能力 + AI 赋能研发提效与智能应用落地。
+            个人优势：复杂交易订单系统平台化交付能力 + AI 赋能研发提效与智能应用落地。
           </p>
           <div class="hero-metrics" aria-label="核心项目指标">
             <span><strong>10W+</strong> 每秒请求</span>
             <span><strong>5.7TB</strong> 数据迁移</span>
             <span><strong>99.999%+</strong> 查询可用性</span>
             <span><strong>64×16</strong> 分库分表</span>
-            <span><strong>数百个</strong> 业务需求交付</span>
-            <span><strong>12.5%→6.04%</strong> 拆单率优化</span>
+            <span><strong>300+</strong> 业务需求交付</span>
+            <span><strong>拆单率 12.5%→6.04%</strong> 优化</span>
           </div>
           <div class="hero-actions" aria-label="核心入口">
             <a class="action-chip primary" href="#agent">
@@ -71,7 +71,7 @@
           <div class="agent-header">
             <div>
               <strong>个人智能体</strong>
-              <span>回答基于经历、项目和简历资料</span>
+              <span>回答基于经历、项目和简历资料；PS：基于 AI 大模型生成，结果以本人回答为准。</span>
             </div>
             <div class="model-status" aria-label="模型状态">
               <span><small>Model</small><strong id="agent-model">demo</strong></span>
@@ -88,7 +88,7 @@
           </div>
 
           <div class="suggestions" aria-label="推荐问题">
-            <button type="button" data-prompt="请用 200 字左右做自我介绍，突出我的最大优势">自我介绍</button>
+            <button type="button" data-prompt="请用 200 字左右做自我介绍，突出我的个人优势">自我介绍</button>
             <button type="button" data-prompt="请按知识库完整概括我的专业技术栈，不要遗漏分类">技术栈</button>
             <button type="button" data-prompt="请基于知识库概括我的项目经历，突出指标和个人角色">项目经历</button>
             <button type="button" data-prompt="请概括我的工作经历和学历背景">工作经历和学历</button>
@@ -134,7 +134,7 @@
         <div class="section-title">
           <p class="eyebrow">技能架构</p>
           <h2>技能结构</h2>
-          <p>严格按专业技能知识库整理十类能力：Java 基础、Spring 生态、微服务、数据库、中间件、搜索、分布式、前端、架构设计、AI 工程。</p>
+          <p>十类能力集中展示：Java 基础、Spring 生态、微服务、数据库、中间件、搜索、分布式、前端、架构设计、AI 工程。</p>
         </div>
 
         <div id="skill-grid" class="skill-grid" aria-label="技能列表"></div>
@@ -144,7 +144,7 @@
         <div class="section-title">
           <p class="eyebrow">站点架构</p>
           <h2>个人站点架构</h2>
-          <p>这个站点使用纯静态前端 + 云函数代理 + 免费模型路由，避免购买服务器，也避免在前端暴露模型密钥。</p>
+          <p>采用 GitHub Pages 静态托管、Cloudflare Worker Serverless API 与 OpenRouter Free Model Router 的前后端解耦架构，支持本地静态调试、线上访问、服务端密钥托管与免费额度保护。</p>
         </div>
 
         <div class="architecture-panel" aria-label="个人站点技术架构图">
@@ -152,40 +152,59 @@
             <div class="orbit-ring one" aria-hidden="true"></div>
             <div class="orbit-ring two" aria-hidden="true"></div>
             <div class="orbit-core">
-              <span>个人智能体</span>
-              <strong>Personal Agent</strong>
-              <small>简历问答 · 项目复盘 · 岗位匹配</small>
+              <span>智能体入口</span>
+              <strong>Personal Agent Console</strong>
+              <small>候选人画像 · 项目问答 · JD 匹配</small>
             </div>
 
             <div class="orbit-node node-visitor">
               <span>访问端</span>
               <strong>HR / 面试官</strong>
-              <small>浏览网站、点击预设问题或输入岗位要求</small>
+              <small>浏览站点，基于预设问题或自由输入发起问答</small>
             </div>
             <div class="orbit-node node-frontend">
               <span>前端</span>
               <strong>GitHub Pages</strong>
-              <small>index.html · styles.css · app.js · config.js</small>
+              <small>Static SPA · UI 渲染 · 本地 / 线上同构调试</small>
             </div>
             <div class="orbit-node node-knowledge">
               <span>知识库</span>
-              <strong>Markdown Profile</strong>
-              <small>优势、技能、工作内容、业绩、项目详情</small>
+              <strong>Markdown Knowledge Base</strong>
+              <small>profile/*.md · 候选人事实源 · Worker Prompt 同步</small>
             </div>
             <div class="orbit-node node-worker">
               <span>后端代理</span>
-              <strong>Cloudflare Worker</strong>
-              <small>CORS · Rate Limit · Secret · Prompt</small>
+              <strong>Serverless API Gateway</strong>
+              <small>CORS · Rate Limit · Secret Injection · Prompt Orchestration</small>
             </div>
             <div class="orbit-node node-model">
               <span>模型</span>
-              <strong>OpenRouter</strong>
+              <strong>OpenRouter Free Model</strong>
               <small>Model: openrouter/free · Price: free</small>
             </div>
             <div class="orbit-node node-guard">
               <span>费用保护</span>
-              <strong>Free Guard</strong>
-              <small>拒绝非 free 模型 · max_price = 0 · 单 IP 限流</small>
+              <strong>Cost & Safety Guard</strong>
+              <small>free-only · max_price = 0 · 单 IP 每日配额</small>
+            </div>
+          </div>
+
+          <div class="file-structure">
+            <div class="deploy-head">
+              <div>
+                <h3>项目文件结构</h3>
+                <p>前端、知识库与 Worker 分层维护，页面可直接通过本地 index.html 调试；生产环境由 GitHub Pages 和 Cloudflare Worker 分别承载。</p>
+              </div>
+              <span>Static Frontend + Worker API</span>
+            </div>
+            <div class="file-tree" aria-label="项目文件结构">
+              <div class="file-row"><span>index.html</span><p>页面结构、智能体入口、项目 / 技能 / 架构模块挂载点</p></div>
+              <div class="file-row"><span>styles.css</span><p>暗黑科技视觉、动态粒子、时间轴、思维导图与响应式布局</p></div>
+              <div class="file-row"><span>app.js</span><p>候选人展示数据、交互逻辑、聊天调用、本地兜底调试</p></div>
+              <div class="file-row"><span>config.js</span><p>前端 Agent Endpoint 配置，支持 file:// 本地直连 Worker</p></div>
+              <div class="file-row"><span>profile/*.md</span><p>个人优势、专业技能、工作内容、业绩与核心项目知识库</p></div>
+              <div class="file-row"><span>worker/index.js</span><p>Serverless Agent API、Prompt 编排、免费模型调用与请求限流</p></div>
+              <div class="file-row"><span>worker/wrangler.toml</span><p>Cloudflare Worker 项目配置与部署入口</p></div>
             </div>
           </div>
 

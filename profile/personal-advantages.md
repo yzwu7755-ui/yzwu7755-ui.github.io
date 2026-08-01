@@ -11,7 +11,7 @@
 
 ## 优势概述
 
-吴臻愿具备 985 院校计算机科班背景，拥有丰富的 Java 后端开发经验，熟悉 Spring Boot、Spring Cloud、MySQL、Redis、Kafka、Elasticsearch 等核心技术栈，具备需求分析、系统设计、开发测试及上线交付的完整项目经验。
+吴臻愿具备华东师范大学计算机科班与 985 院校背景，拥有丰富的 Java 后端开发经验，熟悉 Spring Boot、Spring Cloud、MySQL、Redis、Kafka、Elasticsearch 等核心技术栈，具备需求分析、系统设计、开发测试及上线交付的完整项目经验。
 
 具备 Java 全栈开发能力，熟悉 Vue3、TypeScript、Element Plus 等前端技术，能够独立完成数据库设计、后端接口开发、前端页面实现及前后端联调。曾从 0 到 1 落地多个中大型项目及订单管理后台，对电商订单领域有较深入的理解。
 

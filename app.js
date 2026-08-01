@@ -37,7 +37,7 @@ const projects = [
       situation: "客服、运营、履约、财务等角色需要统一订单作业平台，但原有系统入口分散、权限和审计不足。",
       task: "主导订单管理站点全栈建设，完成权限体系、关键操作审计、公共组件和前后端交互规范升级。",
       action: "基于 Java、Spring Boot、MyBatis 建设后端接口，基于 Vue3、TypeScript、Element Plus 开发页面；落地用户—角色—菜单—按钮—数据范围权限模型，并沉淀表单、表格、详情、状态标签、权限指令等公共组件。",
-      result: "形成统一订单管理入口，支撑数百个订单业务迭代需求，提升交付效率、站点一致性、可维护性和敏感操作安全性。",
+      result: "形成统一订单管理入口，支撑 300+ 订单业务迭代需求，提升交付效率、站点一致性、可维护性和敏感操作安全性。",
     },
     responsibilities: [
       "负责需求调研、流程梳理、技术方案、任务拆解、灰度发布和上线保障",
@@ -47,7 +47,7 @@ const projects = [
       "抽象查询表单、数据表格、详情卡片、状态标签、权限指令和通用弹窗",
     ],
     outcome: "推动订单管理站点由功能型后台向标准化、平台化管理系统演进，减少重复开发和跨系统沟通成本。",
-    metric: "数百需求",
+    metric: "300+ 需求",
     stack: ["Java", "Spring Boot", "MyBatis", "MySQL", "Vue3", "TypeScript", "Element Plus", "Axios", "Vite", "Pinia", "权限模型", "审计日志"],
   },
   {
@@ -95,7 +95,7 @@ const projects = [
       "设计三级幂等机制和拆单锁 / 取消锁并发控制体系",
     ],
     outcome: "降低拆单复杂度和规则变更风险，让拆单能力从定制逻辑升级为可灰度、可验证、可扩展的平台能力。",
-    metric: "12.5%→6.04%",
+    metric: "拆单率 12.5%→6.04%",
     stack: ["Spring Cloud", "Spring Boot", "MyBatis", "MySQL", "Redis", "Elasticsearch", "Kafka", "Apollo", "XXL-JOB", "Maven", "策略模式", "工厂模式"],
   },
 ];
@@ -155,56 +155,30 @@ const skillGroups = [
 
 const experienceEvents = [
   {
-    title: "985 科班基础",
-    time: "校园阶段",
-    type: "校园",
+    title: "华东师范大学 · 计算机科班",
+    time: "2017.09 - 2022.06",
+    type: "985 科班",
     color: "#ff9d3e",
     size: 118,
     x: 20,
     y: 58,
-    summary: "985 院校计算机科班出身，具备扎实计算机基础和快速学习能力。",
-    detail: "计算机科班背景让候选人具备较好的系统学习能力，能够快速理解新业务、新技术，并结合真实项目完成落地。",
+    summary: "985 院校计算机科班背景，系统建立计算机基础、工程思维和快速学习能力。",
+    detail: "2017.09 - 2022.06 就读华东师范大学计算机相关专业，具备科班基础和系统学习能力，为后续 Java 后端、分布式系统、数据库与工程交付打下基础。",
     role: "计算机专业学生",
-    related: ["Java 后端能力", "系统设计基础"],
+    related: ["Java 基础", "数据库基础", "系统设计基础", "学习能力"],
   },
   {
-    title: "交易订单核心研发",
-    time: "工作阶段",
-    type: "后端",
+    title: "交易订单核心业务研发",
+    time: "2022.07 - 2026.05",
+    type: "P6 资深 Java 后端开发",
     color: "#f4f4ef",
     size: 128,
     x: 39,
     y: 27,
-    summary: "负责订单管理、订单查询、订单履约等核心系统研发，支撑高并发交易场景。",
-    detail: "承担核心系统架构设计、功能开发、技术优化和上线交付，持续推进性能优化、代码重构、线上问题治理及公共能力建设。",
-    role: "Java 后端工程师 / 核心研发",
-    related: ["订单 Elasticsearch 异构查询平台", "订单分库分表架构升级"],
-  },
-  {
-    title: "管理后台全栈交付",
-    time: "工作阶段",
-    type: "全栈",
-    color: "#9a9a90",
-    size: 112,
-    x: 64,
-    y: 60,
-    summary: "独立完成订单管理后台从需求分析到上线的完整交付。",
-    detail: "熟悉 Vue3、TypeScript、Element Plus，能完成数据库设计、后端接口、前端页面、联调测试和持续迭代。",
-    role: "Java 全栈开发 / 独立交付",
-    related: ["订单管理站点全栈开发"],
-  },
-  {
-    title: "AI 提效与个人智能体",
-    time: "当前",
-    type: "智能体",
-    color: "#ff9d3e",
-    size: 112,
-    x: 80,
-    y: 34,
-    summary: "熟练使用 Cursor、Claude Code、Copilot，并将 AI 用于工程提效和个人智能体展示。",
-    detail: "将 AI 应用于需求分析、代码生成、项目理解、问题排查、代码优化和技术文档编写；个人站点通过云函数接入免费模型，为招聘方提供可问答的个人智能体。",
-    role: "AI 提效型工程师",
-    related: ["个人智能体网站"],
+    summary: "P6 资深 Java 后端开发，负责交易订单核心系统、查询平台、订单后台、分库分表、ES 查询、拆单和稳定性治理。",
+    detail: "2022.07 - 2026.05 深入交易订单核心业务研发，承担订单管理、订单查询、订单履约等核心系统的架构设计、功能开发、技术优化和上线交付，并持续将 AI 工具用于需求分析、代码生成、排障和文档沉淀。",
+    role: "P6 资深 Java 后端开发 / Java 全栈 / AI 提效型工程师",
+    related: ["订单分库分表与 ES 统一查询平台", "订单管理站点建设与全栈升级", "订单超时统一闭环", "订单拆单系统标准化重构"],
   },
 ];
 
@@ -264,7 +238,7 @@ function renderSkills() {
     <div class="skill-hub">
       <span>专业技能</span>
       <strong>Java 全栈 × AI 工程</strong>
-      <small>严格来自 professional-skills.md</small>
+      <small>Java 后端、全栈交付、分布式平台与 AI 工程能力全景图</small>
     </div>
     <div class="skill-map">
       ${skillGroups
@@ -427,7 +401,7 @@ function localAnswer(question) {
   }
 
   if (q.includes("时间") || q.includes("校园") || q.includes("工作") || q.includes("经历")) {
-    return "经历脉络可以概括为：985 院校计算机科班基础 → 进入交易订单核心业务研发 → 主导订单查询、分库分表、ES 查询、拆单标准化等核心平台建设 → 进一步使用 AI 工具提升研发和交付效率，并通过个人智能体网站展示候选人信息。";
+    return "经历脉络可以概括为：2017.09 - 2022.06 华东师范大学计算机科班 → 2022.07 - 2026.05 交易订单核心业务研发，职级 P6 资深 Java 后端开发 → 主导订单查询、分库分表、ES 查询、订单后台、超时闭环和拆单标准化等核心平台建设 → 使用 AI 工具提升研发和交付效率。";
   }
 
   if (q.includes("角色") || q.includes("负责")) {
@@ -440,7 +414,7 @@ function localAnswer(question) {
   }
 
   if (q.includes("项目") || q.includes("亮点")) {
-    return `当前展示了 ${projects.length} 个核心项目：${projects.map((project) => project.title).join("、")}。最突出的亮点是：分库分表 + ES 查询平台支撑 10W+ 每秒请求、查询可用性 99.999%+、5.7TB 数据迁移、64×16 分库分表；拆单标准化让新业务接入从 3 天缩短至 1 天；订单超时闭环实现线上订单闭环率 100%。`;
+    return `当前展示了 ${projects.length} 个核心项目：${projects.map((project) => project.title).join("、")}。最突出的亮点是：分库分表 + ES 查询平台支撑 10W+ 每秒请求、查询可用性 99.999%+、5.7TB 数据迁移、64×16 分库分表；订单管理站点支撑 300+ 需求；拆单率从 12.5% 优化至 6.04%；订单超时闭环实现线上订单闭环率 100%。`;
   }
 
   if (q.includes("追问") || q.includes("问题")) {
@@ -511,9 +485,16 @@ async function handleQuestion(question) {
     pending.textContent = await askAgent(question);
   } catch {
     pending.textContent =
-      "智能体服务暂时不可用。请检查云函数地址、模型密钥和浏览器控制台里的报错。";
+      "智能体服务暂时不可用。请检查 config.js 的 Worker 地址、Cloudflare Worker 密钥配置和浏览器控制台；本地直接打开 index.html 也会通过该 Worker 地址调用模型。";
   }
 }
+
+document.querySelector(".action-chip.primary")?.addEventListener("click", () => {
+  window.setTimeout(() => {
+    input.focus({ preventScroll: false });
+    input.setSelectionRange(input.value.length, input.value.length);
+  }, 360);
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();

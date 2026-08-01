@@ -89,7 +89,7 @@ Agent 的回答质量主要取决于 `PROFILE` 写得是否具体。
 1. `profile/personal-advantages.md`：面向 HR 的候选人核心优势，包括 Java 后端、全栈、AI 工具、985 科班、学习能力和独立交付能力。
 2. `profile/professional-skills.md`：专业技能，包括 Java 基础、Spring 生态、微服务、MySQL、Redis、MQ、Elasticsearch、分布式、前端、AI 工程能力。
 3. `profile/work-content.md`：日常工作职责，包括交易订单核心研发、订单查询平台、订单管理后台、分库分表、ES 查询平台、拆单标准化、订单超时中心、大促稳定性保障等。
-4. `profile/work-achievements.md`：核心业绩与可量化结果，包括大促无重大故障、亿级订单支撑、万级复杂查询、数十万+查询流量、数百个业务需求交付、拆单率 15% 优化至 6% 等。
+4. `profile/work-achievements.md`：核心业绩与可量化结果，包括大促无重大故障、亿级订单支撑、万级复杂查询、数十万+查询流量、300+ 业务需求交付、拆单率从 12.5% 优化至 6.04% 等。
 5. `profile/project-order-admin.md`：项目一，订单管理站点建设与全栈升级。
 6. `profile/project-query-sharding-es.md`：订单分库分表与 ES 统一查询平台。
 7. `profile/project-timeout-review.md`：项目三，订单超时统一闭环与预处理审核平台优化。
