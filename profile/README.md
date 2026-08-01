@@ -1,6 +1,6 @@
 # Agent 知识库说明
 
-本目录为个人 Agent 的候选人知识库，建议大模型按以下顺序读取：
+本目录为个人智能体的候选人知识库，建议大模型按以下顺序读取：
 
 1. `personal-advantages.md`：个人优势、技术标签、候选人核心画像。
 2. `professional-skills.md`：专业技能，包括 Java、Spring、微服务、数据库、中间件、ES、分布式、前端、AI 工程能力。

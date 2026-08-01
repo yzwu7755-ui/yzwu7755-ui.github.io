@@ -3,30 +3,6 @@ const AGENT_ENDPOINT =
 
 const projects = [
   {
-    title: "订单管理站点建设与全栈升级",
-    type: "全栈后台",
-    period: "核心项目",
-    role: "主导者 / 全栈开发 / 平台建设",
-    summary: "统一订单查询、详情、状态处理、审核与配置能力，支撑客服、运营、履约等内部角色高效作业。",
-    background: "原订单管理站点存在功能入口分散、权限粒度较粗、前后端交互不统一、重复页面建设多、敏感操作管控不足等问题，难以满足多角色、多场景下的精细化订单管理需求。",
-    star: {
-      situation: "客服、运营、履约、财务等角色需要统一订单作业平台，但原有系统入口分散、权限和审计不足。",
-      task: "主导订单管理站点全栈建设，完成权限体系、关键操作审计、公共组件和前后端交互规范升级。",
-      action: "基于 Java、Spring Boot、MyBatis 建设后端接口，基于 Vue3、TypeScript、Element Plus 开发页面；落地用户—角色—菜单—按钮—数据范围权限模型，并沉淀表单、表格、详情、状态标签、权限指令等公共组件。",
-      result: "形成统一订单管理入口，支撑数百个订单业务迭代需求，提升交付效率、站点一致性、可维护性和敏感操作安全性。",
-    },
-    responsibilities: [
-      "负责需求调研、流程梳理、技术方案、任务拆解、灰度发布和上线保障",
-      "独立完成数据库设计、后端接口、Vue3 页面及前后端联调",
-      "建设菜单、按钮、接口、数据范围多层权限控制体系",
-      "对取消订单、状态变更、审核处理等高风险操作增加校验、二次确认和审计日志",
-      "抽象查询表单、数据表格、详情卡片、状态标签、权限指令和通用弹窗",
-    ],
-    outcome: "推动订单管理站点由功能型后台向标准化、平台化管理系统演进，减少重复开发和跨系统沟通成本。",
-    metric: "数百需求",
-    stack: ["Java", "Spring Boot", "MyBatis", "MySQL", "Vue3", "TypeScript", "Element Plus", "Axios", "Vite", "Pinia", "权限模型", "审计日志"],
-  },
-  {
     title: "订单分库分表与 ES 统一查询平台",
     type: "分布式查询",
     period: "核心项目",
@@ -49,6 +25,30 @@ const projects = [
     outcome: "构建高性能、高可用、可扩展的统一订单查询平台，显著提升查询性能、数据扩展能力和业务接入效率。",
     metric: "10W+ 每秒请求",
     stack: ["Spring Cloud", "Spring Boot", "MyBatis", "MySQL", "Redis", "Elasticsearch", "Kafka", "Canal", "XXL-JOB", "Apollo", "Maven", "分库分表"],
+  },
+  {
+    title: "订单管理站点建设与全栈升级",
+    type: "全栈后台",
+    period: "核心项目",
+    role: "主导者 / 全栈开发 / 平台建设",
+    summary: "统一订单查询、详情、状态处理、审核与配置能力，支撑客服、运营、履约等内部角色高效作业。",
+    background: "原订单管理站点存在功能入口分散、权限粒度较粗、前后端交互不统一、重复页面建设多、敏感操作管控不足等问题，难以满足多角色、多场景下的精细化订单管理需求。",
+    star: {
+      situation: "客服、运营、履约、财务等角色需要统一订单作业平台，但原有系统入口分散、权限和审计不足。",
+      task: "主导订单管理站点全栈建设，完成权限体系、关键操作审计、公共组件和前后端交互规范升级。",
+      action: "基于 Java、Spring Boot、MyBatis 建设后端接口，基于 Vue3、TypeScript、Element Plus 开发页面；落地用户—角色—菜单—按钮—数据范围权限模型，并沉淀表单、表格、详情、状态标签、权限指令等公共组件。",
+      result: "形成统一订单管理入口，支撑数百个订单业务迭代需求，提升交付效率、站点一致性、可维护性和敏感操作安全性。",
+    },
+    responsibilities: [
+      "负责需求调研、流程梳理、技术方案、任务拆解、灰度发布和上线保障",
+      "独立完成数据库设计、后端接口、Vue3 页面及前后端联调",
+      "建设菜单、按钮、接口、数据范围多层权限控制体系",
+      "对取消订单、状态变更、审核处理等高风险操作增加校验、二次确认和审计日志",
+      "抽象查询表单、数据表格、详情卡片、状态标签、权限指令和通用弹窗",
+    ],
+    outcome: "推动订单管理站点由功能型后台向标准化、平台化管理系统演进，减少重复开发和跨系统沟通成本。",
+    metric: "数百需求",
+    stack: ["Java", "Spring Boot", "MyBatis", "MySQL", "Vue3", "TypeScript", "Element Plus", "Axios", "Vite", "Pinia", "权限模型", "审计日志"],
   },
   {
     title: "订单超时统一闭环与预处理审核优化",
@@ -85,7 +85,7 @@ const projects = [
       situation: "多场景定制拆单逻辑分散，拆单时机不统一，规则变更缺少可评估和可验证机制。",
       task: "主导拆单系统标准化重构，提升规则抽象、配置化、灰度发布、一致性和并发安全能力。",
       action: "抽象指定类目、多发货方、多履约地、独立服务与虚拟商品四维度模型；统一拆单时机至订单提交履约阶段；建设影子环境历史数据推演；设计 1:1 / 1:N 与规则版本双维度灰度；用策略 + 工厂模式改造拆单引擎，并设计三级幂等 + 双阶段分布式锁。",
-      result: "整体拆单率下降 6.04%，系统可用性达到 99.95%+，新业务接入周期从 3 天缩短至 1 天，开发效率提升 60%+，重复拆单率降至 0。",
+      result: "整体拆单率从 12.5% 优化至 6.04%，系统可用性达到 99.95%+，新业务接入周期从 3 天缩短至 1 天，开发效率提升 60%+，重复拆单率降至 0。",
     },
     responsibilities: [
       "将拆单规则抽象为四维度模型并统一执行链路",
@@ -95,7 +95,7 @@ const projects = [
       "设计三级幂等机制和拆单锁 / 取消锁并发控制体系",
     ],
     outcome: "降低拆单复杂度和规则变更风险，让拆单能力从定制逻辑升级为可灰度、可验证、可扩展的平台能力。",
-    metric: "-6.04%",
+    metric: "12.5%→6.04%",
     stack: ["Spring Cloud", "Spring Boot", "MyBatis", "MySQL", "Redis", "Elasticsearch", "Kafka", "Apollo", "XXL-JOB", "Maven", "策略模式", "工厂模式"],
   },
 ];
@@ -260,20 +260,31 @@ function renderProjects() {
 }
 
 function renderSkills() {
-  skillGrid.innerHTML = skillGroups
-    .map(
-      (group, index) => `
-        <article class="skill-card">
-          <div class="skill-number">${String(index + 1).padStart(2, "0")}</div>
-          <h3>${group.title}</h3>
-          <p>${group.summary}</p>
-          <div class="skill-tags">
-            ${group.skills.map((skill) => `<span>${skill}</span>`).join("")}
-          </div>
-        </article>
-      `,
-    )
-    .join("");
+  skillGrid.innerHTML = `
+    <div class="skill-hub">
+      <span>专业技能</span>
+      <strong>Java 全栈 × AI 工程</strong>
+      <small>严格来自 professional-skills.md</small>
+    </div>
+    <div class="skill-map">
+      ${skillGroups
+        .map(
+          (group, index) => `
+            <article class="skill-node" style="--skill-index:${index}">
+              <div class="skill-node-head">
+                <span>${String(index + 1).padStart(2, "0")}</span>
+                <h3>${group.title}</h3>
+              </div>
+              <p>${group.summary}</p>
+              <div class="skill-tags">
+                ${group.skills.map((skill) => `<span>${skill}</span>`).join("")}
+              </div>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
 }
 
 function renderExperience() {
@@ -433,7 +444,7 @@ function localAnswer(question) {
   }
 
   if (q.includes("追问") || q.includes("问题")) {
-    return "HR 可以继续问：1. 订单 ES 平台如何保证数据一致性？2. 分库分表迁移如何灰度和兜底？3. 大促稳定性保障具体做了哪些压测、限流和预案？4. 订单拆单率从 15% 到 6% 的关键动作是什么？5. 你如何用 AI 工具提升需求分析、编码和排障效率？";
+    return "HR 可以继续问：1. 订单 ES 平台如何保证数据一致性？2. 分库分表迁移如何灰度和兜底？3. 大促稳定性保障具体做了哪些压测、限流和预案？4. 订单拆单率从 12.5% 优化到 6.04% 的关键动作是什么？5. 你如何用 AI 工具提升需求分析、编码和排障效率？";
   }
 
   return `可以这样介绍：${fallbackProfile.name} 是一位 ${fallbackProfile.role}，核心优势包括 ${fallbackProfile.strengths.join("、")}。他有交易订单核心系统研发经验，参与订单管理、查询、履约、分库分表、ES 搜索和异常治理等方向，并能独立完成管理后台全栈交付。`;
