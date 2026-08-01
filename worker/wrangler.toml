@@ -3,6 +3,7 @@ main = "index.js"
 compatibility_date = "2026-08-01"
 
 [vars]
+KB_BASE_URL = "https://yzwu7755-ui.github.io/profile/"
 # Do not put real API keys here.
 # Set secrets with:
 # wrangler secret put OPENROUTER_API_KEY
