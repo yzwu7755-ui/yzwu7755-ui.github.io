@@ -13,10 +13,22 @@ const PROFILE = `
 - 个人优势：丰富 Java 后端经验、具备全栈开发能力、熟练使用 AI、985 院校计算机科班背景、学习能力强、可独立完成项目交付
 - 后端技术栈：Java、Spring Boot、Spring Cloud、MySQL、Redis、Kafka、Elasticsearch
 - 前端技术栈：Vue3、TypeScript、Element Plus
-- AI 工具：Cursor、Claude Code、Copilot
+- AI 工具：Cursor、Claude Code、GitHub Copilot
 - 业务领域：电商交易订单、订单管理、订单查询、订单履约、订单管理后台
 - 代表作品：个人 Agent 网站，使用 GitHub Pages、Cloudflare Worker 和 OpenRouter 免费模型，帮助 HR 通过对话了解候选人
 - 联系方式：your.email@example.com
+
+专业技能：
+- Java 基础：熟练使用 Java，掌握集合、IO、反射、动态代理、泛型；深入理解 JMM、synchronized、volatile、CAS、AQS、ThreadLocal、线程池；熟悉 JVM 类加载、内存模型、G1、CMS 及性能调优。
+- Spring 生态：熟练使用 Spring、Spring Boot、Spring MVC、MyBatis、MyBatis-Plus，理解 IOC、AOP、事务管理、自动装配，具备框架扩展及二次开发经验。
+- 微服务架构：熟悉 Spring Cloud Alibaba，掌握 Nacos、OpenFeign、Sentinel、Gateway，具备服务治理、限流、熔断、降级、灰度发布实践。
+- 数据库：熟悉 MySQL 索引、事务、MVCC、锁机制、Undo/Redo Log、Binlog，具备 SQL 调优、索引优化、分库分表、海量数据治理及数据迁移经验。
+- 缓存与中间件：熟悉 Redis 线程模型、数据结构、缓存设计、分布式锁、延迟队列、缓存一致性；熟悉 Kafka、RabbitMQ，具备消息可靠性、顺序消息、重复消费、消息堆积治理经验。
+- 搜索与大数据：熟练使用 Elasticsearch，掌握索引设计、Mapping、DSL、Mustache 模板、Binlog + MQ 数据同步、一致性校验及海量订单异构查询平台建设。
+- 分布式技术：熟悉 CAP、BASE，掌握 TCC、Seata、2PC、分布式 ID、分布式锁、高并发、高可用系统设计及稳定性治理。
+- 前端开发：熟练使用 Vue3、TypeScript、JavaScript、Element Plus、Axios、Vite、npm、Pinia，能独立完成管理后台页面、组件封装、权限控制和联调交付。
+- 设计与架构：熟悉单例、工厂、代理、策略、模板方法、责任链、观察者等设计模式，具备领域建模、平台化、组件化和公共能力抽象经验。
+- AI 工程能力：熟练使用 Cursor、GitHub Copilot、Claude Code；掌握 Prompt Engineering、Token、Function Calling；熟悉 MCP、Agent、Tool Calling、RAG，具备 Skill 开发经验，了解 Spring AI、LangChain4j。
 
 个人优势：
 - 985 院校计算机科班出身，拥有丰富 Java 后端开发经验，熟悉 Spring Boot、Spring Cloud、MySQL、Redis、Kafka、Elasticsearch 等核心技术栈。
@@ -48,6 +60,32 @@ const PROFILE = `
 - 建设订单超时中心、预处理审核平台及异常处理流程，实现线上订单处理闭环率 100%。
 - 主导订单拆单标准化建设，订单拆单率由 15% 优化至 6%，降低拆单数量及系统复杂度，提升履约效率和业务体验。
 - 沉淀订单查询、ES 搜索、拆单等核心基础能力，为多个业务团队提供统一技术支撑。
+
+核心项目：
+1. 订单管理站点建设与全栈升级
+- 背景：订单管理站点服务客服、运营、履约、财务、技术支持等内部角色，原有站点存在功能入口分散、权限粒度粗、交互不统一、重复页面多、敏感操作管控不足等问题。
+- 职责：主导全栈建设与持续迭代，负责需求调研、流程梳理、技术方案、任务拆解、前后端开发、联调测试、灰度发布和上线保障。
+- 技术：Java、Spring Boot、MyBatis、MySQL、Vue3、TypeScript、Element Plus、Axios、RBAC 权限模型。
+- 关键动作：建设“用户—角色—菜单—按钮—数据范围”权限体系；对取消订单、状态变更、退款审核等敏感操作增加权限校验、二次确认、原因填写和审计日志；沉淀查询表单、列表表格、详情卡片、状态标签、权限指令、通用弹窗等公共组件。
+- 结果：统一订单管理入口，支撑数百个订单业务迭代需求，提升交付效率、站点一致性、可维护性和操作安全性。
+
+2. 订单分库分表与 ES 统一查询平台
+- 背景：订单查询链路存在性能瓶颈，数据规模增长要求单库架构向分库分表 + ES 的分布式查询体系演进。
+- 技术：Spring Cloud、Spring Boot、MyBatis、MySQL、Redis、Elasticsearch、Kafka、Canal、XXL-JOB、Apollo、Maven。
+- 关键动作：完成 5.7TB 单库向 MySQL 集群（64 库 × 16 表）平滑迁移；将单表规模由亿级降至百万级；基于雪花算法实现分布式订单 ID（Int → Long），采用 SDK 本地生成 + Redis WorkerId 动态分配与续租；设计“分片分组 + 批量查询 + 有界并发”模型；构建 Binlog（Canal）+ 业务 MQ 双链路同步；建设统一 ES 查询服务、查询降级容灾、“准实时 + 离线”对账、分布式扫描与并发控制、查询模板标准化与 AI 查询 Skill。
+- 结果：整体存储成本下降 20% ~ 30%，稳定支撑 10W+ QPS，ES 查询服务可用性达到 99.999%+，完成 10 亿级 DB 数据到 ES 平滑迁移，迁移峰值 2 亿 / 天，抽象 100+ 查询场景，70% 收敛为 3 类通用模板，沉淀约 30 个定制模板。
+
+3. 订单超时统一闭环与预处理审核平台优化
+- 背景：线上未支付订单缺少统一闭环机制，超时处理能力分散，支付前审核链路依赖较重。
+- 职责：主导建设订单超时统一闭环方案，覆盖未支付订单识别、超时规则配置、任务调度、状态流转、异常补偿；同步优化预处理审核平台，裁撤冗余功能和非必要审核节点。
+- 关键动作：负责调研、流程梳理、概要及详细设计、任务拆解、跨团队推进，并通过分阶段灰度、数据校验和回滚预案保障落地。
+- 结果：实现线上订单闭环率 100%；将人工关单和异常排查升级为自动化处理；沉淀可配置、可扩展的超时处理能力；完善幂等、重试、补偿、监控告警及灰度回滚机制。
+
+4. 订单拆单系统标准化重构
+- 背景：拆单规则分散、扩展性差、用户体验割裂、业务影响不可控。
+- 技术：Spring Cloud、Spring Boot、MyBatis、MySQL、Redis、Elasticsearch、Kafka、Apollo、XXL-JOB、Maven。
+- 关键动作：将多场景定制逻辑抽象为“四维度模型”（指定类目、多发货方、多履约地、独立服务与虚拟商品）；统一拆单时机至订单提交履约阶段；基于历史数据回溯建设影子环境推演体系；设计拆单模式（1:1 / 1:N）与规则版本双维度灰度；基于 Apollo 秒级配置下发；基于策略模式 + 工厂模式实现规则可插拔；设计“三级幂等机制 + 双阶段分布式锁（拆单锁 / 取消锁）”。
+- 结果：整体拆单率下降 6.04%，系统可用性达到 99.95%+，新业务接入周期从 3 天缩短至 1 天，开发效率提升 60%+，重复拆单率降至 0。
 
 回答要求：
 - 项目经历优先使用 STAR 法则：Situation、Task、Action、Result
