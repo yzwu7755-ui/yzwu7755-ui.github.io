@@ -166,16 +166,15 @@
             </ol>
           </article>
 
-          <article class="architecture-card">
+          <article class="architecture-card step-card">
             <span class="architecture-index">03</span>
             <h3>部署步骤</h3>
-            <ol>
-              <li>GitHub Pages 托管网站根目录</li>
-              <li>Cloudflare Workers 创建 `personal-agent-api`</li>
-              <li>粘贴 `worker/index.js`</li>
-              <li>添加 Secret：`OPENROUTER_API_KEY`</li>
-              <li>把 Worker URL 写入 `config.js`</li>
-            </ol>
+            <div class="deploy-stages">
+              <span>GitHub Pages / root</span>
+              <span>Cloudflare Worker API</span>
+              <span>OpenRouter Secret</span>
+              <span>config.js endpoint</span>
+            </div>
           </article>
 
           <article class="architecture-card">
@@ -201,23 +200,42 @@
             </ul>
           </article>
 
-          <article class="architecture-card">
-            <span class="architecture-index">06</span>
-            <h3>项目地址</h3>
-            <div class="architecture-links">
-              <a href="https://yzwu7755-ui.github.io/" target="_blank" rel="noreferrer">线上站点</a>
-              <a href="https://github.com/yzwu7755-ui/yzwu7755.github.io" target="_blank" rel="noreferrer">GitHub 仓库</a>
-              <a href="https://personal-agent-api.yzwu7755.workers.dev/" target="_blank" rel="noreferrer">Worker API</a>
-            </div>
-          </article>
-
-          <article class="architecture-card wide">
+          <article class="architecture-card deploy-console">
             <span class="architecture-index">07</span>
-            <h3>GitHub 推送命令</h3>
+            <div class="deploy-head">
+              <div>
+                <h3>Deploy Console</h3>
+                <p>项目地址、GitHub Pages 发布源和一键推送命令统一放在这里。</p>
+              </div>
+              <span>main → GitHub Pages</span>
+            </div>
+
+            <div class="deploy-links">
+              <a href="https://yzwu7755-ui.github.io/" target="_blank" rel="noreferrer">
+                <span>Live</span>
+                https://yzwu7755-ui.github.io/
+              </a>
+              <a href="https://github.com/yzwu7755-ui/yzwu7755-ui.github.io" target="_blank" rel="noreferrer">
+                <span>Repo</span>
+                github.com/yzwu7755-ui/yzwu7755-ui.github.io
+              </a>
+              <a href="https://personal-agent-api.yzwu7755.workers.dev/" target="_blank" rel="noreferrer">
+                <span>API</span>
+                personal-agent-api.yzwu7755.workers.dev
+              </a>
+            </div>
+
+            <div class="deploy-steps">
+              <div><span>01</span>确认 GitHub 仓库为 Public</div>
+              <div><span>02</span>Pages 使用 `main` / `/root`</div>
+              <div><span>03</span>同步发布副本并提交</div>
+              <div><span>04</span>推送到 GitHub 后等待 Pages 构建</div>
+            </div>
+
             <pre class="command-block"><code>cd /Users/wuzhenyuan/Documents/Codex/2026-08-01/buy/work/github-pages-site
 ssh-add ~/.ssh/id_ed25519
 ssh -T git@github.com
-git remote set-url origin git@github.com:yzwu7755-ui/yzwu7755.github.io.git
+git remote set-url origin git@github.com:yzwu7755-ui/yzwu7755-ui.github.io.git
 git add .
 git commit -m "Update personal agent site"
 git push -u origin main</code></pre>

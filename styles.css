@@ -1342,12 +1342,17 @@ h3 {
   grid-column: span 2;
 }
 
+.architecture-card.deploy-console {
+  grid-column: 1 / -1;
+}
+
 .architecture-index,
 .architecture-card h3,
 .architecture-card p,
 .architecture-card ol,
 .architecture-card ul,
-.architecture-tags {
+.architecture-tags,
+.deploy-stages {
   position: relative;
   z-index: 1;
 }
@@ -1399,6 +1404,23 @@ h3 {
   font-size: 12px;
 }
 
+.deploy-stages {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.deploy-stages span {
+  border: 1px solid rgba(243, 92, 146, 0.18);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 156, 62, 0.06), rgba(148, 135, 255, 0.04)),
+    rgba(0, 0, 0, 0.2);
+  color: var(--text);
+  padding: 12px;
+  font-size: 13px;
+}
+
 .architecture-links {
   position: relative;
   z-index: 1;
@@ -1424,6 +1446,98 @@ h3 {
   content: "↗";
 }
 
+.deploy-console {
+  border-color: rgba(243, 92, 146, 0.24);
+  background:
+    radial-gradient(circle at 92% 10%, rgba(148, 135, 255, 0.13), transparent 34%),
+    radial-gradient(circle at 0% 0%, rgba(255, 156, 62, 0.11), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(0, 0, 0, 0.28);
+}
+
+.deploy-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.deploy-head p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.deploy-head > span {
+  border: 1px solid rgba(255, 156, 62, 0.24);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 156, 62, 0.08), rgba(148, 135, 255, 0.05));
+  color: var(--text);
+  padding: 8px 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.deploy-links {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.deploy-links a {
+  overflow: hidden;
+  border: 1px solid rgba(243, 92, 146, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--muted);
+  padding: 13px;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deploy-links span {
+  display: block;
+  margin-bottom: 8px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 900;
+}
+
+.deploy-steps {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.deploy-steps div {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--muted);
+  padding: 13px;
+  line-height: 1.55;
+}
+
+.deploy-steps span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--green);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 900;
+}
+
 .command-block {
   position: relative;
   z-index: 1;
@@ -1436,6 +1550,7 @@ h3 {
   color: var(--text);
   margin: 18px 0 0;
   padding: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .command-block code {
@@ -1593,6 +1708,11 @@ h3 {
   .architecture-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .deploy-links,
+  .deploy-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 680px) {
@@ -1665,8 +1785,18 @@ h3 {
 
   .architecture-card.wide,
   .architecture-card.flow-card,
-  .architecture-card.guard-card {
+  .architecture-card.guard-card,
+  .architecture-card.deploy-console {
     grid-column: auto;
+  }
+
+  .deploy-head {
+    flex-direction: column;
+  }
+
+  .deploy-links,
+  .deploy-steps {
+    grid-template-columns: 1fr;
   }
 
   .chat-form {
