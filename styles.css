@@ -379,7 +379,7 @@ h3 {
   font-size: 15px;
   font-weight: 900;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.07),
     0 18px 45px rgba(0, 0, 0, 0.18);
@@ -402,6 +402,7 @@ h3 {
   font-family: inherit;
   font-size: 16px;
   letter-spacing: 0;
+  line-height: 1.15;
 }
 
 .action-chip .action-cue {
@@ -413,9 +414,10 @@ h3 {
 
 .action-chip.primary {
   grid-template-columns: 1fr;
-  gap: 8px;
+  gap: 6px;
   justify-items: center;
-  min-height: 82px;
+  min-height: 88px;
+  padding: 14px 10px;
 }
 
 .action-chip::before {
@@ -464,15 +466,19 @@ h3 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: clamp(15px, 1.7vw, 20px);
+  font-size: clamp(18px, 2.1vw, 25px);
   font-weight: 1000;
+  white-space: nowrap;
 }
 
 .action-chip.primary .action-cue {
   border: 1px solid rgba(255, 156, 62, 0.28);
   border-radius: 999px;
   background: rgba(255, 156, 62, 0.08);
-  padding: 5px 8px;
+  padding: 4px 7px;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .skill-marquee {
@@ -872,6 +878,14 @@ h3 {
 
 .message p {
   margin: 0;
+}
+
+.message.streaming p::after {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--green);
+  content: "▋";
+  animation: cursorBlink 0.8s steps(2, start) infinite;
 }
 
 .message.agent {

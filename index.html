@@ -49,8 +49,8 @@
           </div>
           <div class="hero-actions" aria-label="核心入口">
             <a class="action-chip primary" href="#agent">
-              <span class="action-label">请点击此处进行对话</span>
-              <span class="action-cue">Personal Agent ↗</span>
+              <span class="action-label">个人智能体</span>
+              <span class="action-cue">点击此处进行对话 ↗</span>
             </a>
             <a class="action-chip" href="#projects">
               项目经历
@@ -152,7 +152,7 @@
           <article class="ai-lab-card featured">
             <span>01 / Interaction</span>
             <h3>大模型交互链路</h3>
-            <p>前端收集 HR 的自然语言问题，经 Cloudflare Worker 统一做 CORS、限流、密钥注入、知识库装配和模型调用，再把回答返回到页面。前端不保存 API Key，本地打开 index.html 也能通过 Worker 直接调试。</p>
+            <p>前端收集 HR 的自然语言问题，经 Cloudflare Worker 统一做 CORS、限流、密钥注入、知识库装配和模型调用，并以流式输出逐段返回页面。前端不保存 API Key，本地打开 index.html 也能通过 Worker 直接调试。</p>
           </article>
           <article class="ai-lab-card">
             <span>02 / Prompt</span>
@@ -168,6 +168,11 @@
             <span>04 / Guardrails</span>
             <h3>免费额度与事实保护</h3>
             <p>模型固定使用 free 模型，设置 max_price = 0，并通过单 IP 每日配额控制调用频次；回答时只基于知识库数字和事实，不补充未提供的公司名、奖项或联系方式。</p>
+          </article>
+          <article class="ai-lab-card">
+            <span>05 / Memory</span>
+            <h3>流式输出与多轮记忆</h3>
+            <p>前端用 sessionStorage 保存最近几轮问答，把上下文随请求发送给 Worker；Worker 组合系统提示词、知识库和历史消息后调用流式模型接口，让对话能连续追问并实时显示生成过程。</p>
           </article>
         </div>
       </section>

@@ -1,5 +1,7 @@
 const FREE_MODEL = "openrouter/free";
 const MAX_MESSAGE_CHARS = 4000;
+const MAX_HISTORY_MESSAGES = 10;
+const MAX_HISTORY_CHARS = 1200;
 const MAX_REQUESTS_PER_IP_PER_DAY = 20;
 const MAX_KB_CHARS = 28000;
 const KB_CACHE_TTL_MS = 10 * 60 * 1000;
@@ -43,6 +45,7 @@ const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Expose-Headers": "X-Model, X-Knowledge-Source",
 };
 
 export default {
@@ -85,10 +88,24 @@ export default {
 
     try {
       const knowledge = await loadKnowledgeBase(env);
+      const history = normalizeHistory(body.history);
+      const systemPrompt = buildSystemPrompt(knowledge.text);
+
+      if (body.stream === true) {
+        return await streamOpenRouter({
+          apiKey: env.OPENROUTER_API_KEY,
+          message,
+          history,
+          systemPrompt,
+          knowledgeSource: knowledge.source,
+        });
+      }
+
       const answer = await callOpenRouter({
         apiKey: env.OPENROUTER_API_KEY,
         message,
-        systemPrompt: buildSystemPrompt(knowledge.text),
+        history,
+        systemPrompt,
       });
 
       return json({
@@ -206,7 +223,7 @@ ${knowledgeBase}
 `;
 }
 
-async function callOpenRouter({ apiKey, message, systemPrompt }) {
+async function callOpenRouter({ apiKey, message, history, systemPrompt }) {
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -217,10 +234,7 @@ async function callOpenRouter({ apiKey, message, systemPrompt }) {
     },
     body: JSON.stringify({
       model: FREE_MODEL,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: message },
-      ],
+      messages: buildMessages({ systemPrompt, history, message }),
       temperature: 0.35,
       max_tokens: 760,
       provider: {
@@ -240,6 +254,134 @@ async function callOpenRouter({ apiKey, message, systemPrompt }) {
 
   const data = await response.json();
   return data.choices?.[0]?.message?.content || "模型没有返回有效内容。";
+}
+
+async function streamOpenRouter({ apiKey, message, history, systemPrompt, knowledgeSource }) {
+  const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+      "HTTP-Referer": "https://yzwu7755-ui.github.io",
+      "X-Title": "Wu Zhenyuan Personal Agent Portfolio",
+    },
+    body: JSON.stringify({
+      model: FREE_MODEL,
+      messages: buildMessages({ systemPrompt, history, message }),
+      temperature: 0.35,
+      max_tokens: 760,
+      stream: true,
+      provider: {
+        allow_fallbacks: false,
+      },
+      max_price: {
+        prompt: 0,
+        completion: 0,
+      },
+    }),
+  });
+
+  if (!upstream.ok || !upstream.body) {
+    const errorText = await upstream.text();
+    throw new Error(`OpenRouter stream failed: ${upstream.status} ${errorText}`);
+  }
+
+  const decoder = new TextDecoder();
+  const encoder = new TextEncoder();
+  let buffer = "";
+
+  const readable = new ReadableStream({
+    async start(controller) {
+      const reader = upstream.body.getReader();
+
+      try {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) {
+            break;
+          }
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop() || "";
+
+          for (const line of lines) {
+            const text = parseOpenRouterStreamLine(line);
+            if (text) {
+              controller.enqueue(encoder.encode(text));
+            }
+          }
+        }
+
+        const tail = decoder.decode();
+        if (tail) {
+          buffer += tail;
+        }
+
+        for (const line of buffer.split("\n")) {
+          const text = parseOpenRouterStreamLine(line);
+          if (text) {
+            controller.enqueue(encoder.encode(text));
+          }
+        }
+      } finally {
+        controller.close();
+        reader.releaseLock();
+      }
+    },
+  });
+
+  return new Response(readable, {
+    status: 200,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Model": FREE_MODEL,
+      "X-Knowledge-Source": knowledgeSource,
+    },
+  });
+}
+
+function parseOpenRouterStreamLine(line) {
+  const trimmed = line.trim();
+  if (!trimmed || !trimmed.startsWith("data:")) {
+    return "";
+  }
+
+  const data = trimmed.slice(5).trim();
+  if (!data || data === "[DONE]") {
+    return "";
+  }
+
+  try {
+    const parsed = JSON.parse(data);
+    return parsed.choices?.[0]?.delta?.content || "";
+  } catch {
+    return "";
+  }
+}
+
+function buildMessages({ systemPrompt, history, message }) {
+  return [
+    { role: "system", content: systemPrompt },
+    ...history,
+    { role: "user", content: message },
+  ];
+}
+
+function normalizeHistory(history) {
+  if (!Array.isArray(history)) {
+    return [];
+  }
+
+  return history
+    .filter((item) => ["user", "assistant"].includes(item?.role) && item?.content)
+    .map((item) => ({
+      role: item.role,
+      content: String(item.content).slice(0, MAX_HISTORY_CHARS),
+    }))
+    .slice(-MAX_HISTORY_MESSAGES);
 }
 
 function normalizeBaseUrl(baseUrl) {

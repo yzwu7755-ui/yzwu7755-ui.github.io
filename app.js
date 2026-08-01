@@ -226,6 +226,9 @@ const experienceList = document.querySelector("#experience-list");
 const projectDialog = document.querySelector("#project-dialog");
 const projectDetail = document.querySelector("#project-detail");
 const dialogClose = document.querySelector(".dialog-close");
+const MEMORY_STORAGE_KEY = "wuzhenyuan-personal-agent-memory";
+const MAX_MEMORY_MESSAGES = 10;
+let conversationHistory = loadConversationHistory();
 
 if (AGENT_ENDPOINT) {
   modelBadge.textContent = "openrouter/free";
@@ -413,6 +416,33 @@ function appendMessage(role, text) {
   message.append(paragraph);
   chatLog.append(message);
   chatLog.scrollTop = chatLog.scrollHeight;
+  return paragraph;
+}
+
+function loadConversationHistory() {
+  try {
+    const parsed = JSON.parse(sessionStorage.getItem(MEMORY_STORAGE_KEY) || "[]");
+    return Array.isArray(parsed)
+      ? parsed
+          .filter((item) => ["user", "assistant"].includes(item.role) && item.content)
+          .map((item) => ({
+            role: item.role,
+            content: String(item.content).slice(0, 1200),
+          }))
+          .slice(-MAX_MEMORY_MESSAGES)
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function rememberMessage(role, content) {
+  conversationHistory.push({
+    role,
+    content: String(content).trim().slice(0, 1200),
+  });
+  conversationHistory = conversationHistory.slice(-MAX_MEMORY_MESSAGES);
+  sessionStorage.setItem(MEMORY_STORAGE_KEY, JSON.stringify(conversationHistory));
 }
 
 function localAnswer(question) {
@@ -450,7 +480,7 @@ function localAnswer(question) {
   return `可以这样介绍：${fallbackProfile.name} 是一位 ${fallbackProfile.role}，核心优势包括 ${fallbackProfile.strengths.join("、")}。他有交易订单核心系统研发经验，参与订单管理、查询、履约、分库分表、ES 搜索和异常治理等方向，并能独立完成管理后台全栈交付。`;
 }
 
-async function askAgent(question) {
+async function askAgent(question, onChunk) {
   if (!AGENT_ENDPOINT) {
     await new Promise((resolve) => setTimeout(resolve, 350));
     return localAnswer(question);
@@ -461,11 +491,42 @@ async function askAgent(question) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ message: question }),
+    body: JSON.stringify({
+      message: question,
+      history: conversationHistory,
+      stream: true,
+    }),
   });
 
   if (!response.ok) {
     throw new Error(`Agent request failed: ${response.status}`);
+  }
+
+  const responseModel = response.headers.get("X-Model");
+  if (responseModel) {
+    modelBadge.textContent = responseModel;
+    freeBadge.textContent = "free";
+  }
+
+  const contentType = response.headers.get("Content-Type") || "";
+  if (response.body && contentType.includes("text/plain")) {
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let answer = "";
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) {
+        break;
+      }
+
+      const chunk = decoder.decode(value, { stream: true });
+      answer += chunk;
+      onChunk?.(chunk, answer);
+    }
+
+    answer += decoder.decode();
+    return answer.trim() || "我暂时没有拿到有效回答。";
   }
 
   const data = await response.json();
@@ -503,15 +564,24 @@ async function handleQuestion(question) {
   input.value = "";
   input.focus();
 
-  const thinking = "我在根据候选人资料整理回答...";
-  appendMessage("agent", thinking);
-  const pending = chatLog.lastElementChild.querySelector("p");
+  const pending = appendMessage("agent", "");
+  const pendingMessage = pending.closest(".message");
+  pendingMessage.classList.add("streaming");
 
   try {
-    pending.textContent = await askAgent(question);
+    const answer = await askAgent(question, (_chunk, fullText) => {
+      pending.textContent = fullText || "正在连接个人知识库...";
+      chatLog.scrollTop = chatLog.scrollHeight;
+    });
+
+    pending.textContent = answer;
+    rememberMessage("user", question);
+    rememberMessage("assistant", answer);
   } catch {
     pending.textContent =
       "智能体服务暂时不可用。请检查 config.js 的 Worker 地址、Cloudflare Worker 密钥配置和浏览器控制台；本地直接打开 index.html 也会通过该 Worker 地址调用模型。";
+  } finally {
+    pendingMessage.classList.remove("streaming");
   }
 }
 
