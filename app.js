@@ -3,175 +3,181 @@ const AGENT_ENDPOINT =
 
 const projects = [
   {
-    title: "个人 Agent 网站",
-    type: "AI Web",
-    period: "2026",
-    role: "产品设计 / 前端实现 / Agent 接入",
-    summary:
-      "面向 HR 的交互式个人网站，把静态简历升级成可以提问的个人 Agent。",
-    background:
-      "传统简历信息密度高但互动弱，招聘方很难快速围绕岗位问题追问。这个项目用低成本静态站和 Worker 代理，把候选人资料变成可对话入口。",
+    title: "订单 Elasticsearch 异构查询平台",
+    type: "Search Platform",
+    period: "核心项目",
+    role: "主导者 / 架构设计 / 核心开发",
+    summary: "建设订单 ES 索引与 Binlog + MQ 双链路同步体系，支撑海量订单复杂条件实时查询。",
+    background: "交易订单数据规模持续增长，传统数据库查询在复杂条件组合、跨业务场景检索和用户体验上遇到瓶颈，需要建设异构查询平台承接客服、运营、履约等高频查询。",
     star: {
-      situation: "HR 通常只能看到静态简历，很难进一步追问候选人的项目细节、真实角色和岗位匹配点。",
-      task: "设计一个不购买服务器、可部署到 GitHub Pages 的个人网站，并内置一个安全可扩展的个人 Agent。",
-      action:
-        "搭建暗黑科技风静态页面、聊天交互、项目详情弹窗和 Cloudflare Worker 代理，避免模型 Key 暴露在浏览器中。",
-      result:
-        "形成可直接上线的作品集原型，HR 可以通过推荐问题或自由输入了解经历、项目、STAR 案例和 JD 匹配。",
+      situation: "海量订单场景下，复杂条件检索依赖数据库会带来查询性能下降、链路压力上升和体验不稳定。",
+      task: "主导建设订单 Elasticsearch 查询平台，统一复杂检索能力，并保证异构数据同步的一致性与可观测。",
+      action: "负责索引模型设计、查询 DSL 封装、Binlog + MQ 双链路同步、一致性校验及离线对账能力建设，推动平台接入多业务场景。",
+      result: "平台稳定承载万级复杂查询请求，显著提升查询性能和用户体验，并沉淀统一订单搜索能力。",
     },
     responsibilities: [
-      "设计 GitHub Pages 静态站结构和响应式界面",
-      "实现聊天 UI、推荐问题和本地演示回答",
-      "设计 Cloudflare Worker 代理，避免在前端泄露模型 API Key",
-      "整理个人 PROFILE，约束 Agent 不编造简历事实",
+      "设计订单 ES 索引模型与查询字段映射",
+      "封装复杂条件查询 DSL，降低业务接入成本",
+      "建设 Binlog + MQ 双链路同步、一致性校验与离线对账",
+      "推进平台化接入，支撑客服、运营、履约等查询场景",
     ],
-    outcome:
-      "无需购买服务器即可上线，适合日常几百次浏览或低频 HR 访问。后续只需要补充真实简历和项目资料。",
-    metric: "0 server cost",
-    stack: ["GitHub Pages", "Cloudflare Worker", "Gemini / OpenRouter", "HTML", "CSS", "JavaScript"],
+    outcome: "解决海量订单复杂检索、查询性能及数据一致性问题，为多业务场景提供稳定实时查询能力。",
+    metric: "万级复杂查询",
+    stack: ["Java", "Spring Boot", "Elasticsearch", "Kafka", "Binlog", "MySQL"],
   },
   {
-    title: "AI 项目管理助手",
-    type: "Agent Workflow",
-    period: "2025",
-    role: "Agent 流程设计 / 前端原型",
-    summary:
-      "把需求、任务、风险和会议纪要整理成可执行清单的工作流助手。",
-    background:
-      "团队协作里大量信息散落在聊天、文档和会议中，项目推进时容易丢上下文。这个项目用于验证 Agent 对任务拆解和状态追踪的帮助。",
+    title: "订单分库分表架构升级",
+    type: "Data Architecture",
+    period: "核心项目",
+    role: "主导者 / 架构升级 / 数据迁移",
+    summary: "面向海量订单数据增长完成分库分表架构演进，解决单表容量瓶颈与扩展性不足。",
+    background: "订单数据快速增长导致单表容量、查询性能和后续扩展风险逐渐升高，需要对核心订单存储架构进行系统性升级。",
     star: {
-      situation: "项目推进时，会议纪要、聊天记录和需求文档分散，团队容易遗漏风险和下一步动作。",
-      task: "做一个能把模糊输入整理成任务、风险和建议行动的 AI 项目管理助手。",
-      action:
-        "设计输入解析流程、结构化输出格式、项目看板原型和 Prompt 约束，让 Agent 输出可执行清单。",
-      result:
-        "得到一个可演示的 Agent 工作流原型，能展示 AI 产品判断、前端实现和流程设计能力。",
+      situation: "单表数据量过大后，订单查询、维护和容量扩展都面临性能与稳定性挑战。",
+      task: "主导订单分库分表架构升级，并完成历史数据迁移，保障业务连续性。",
+      action: "参与方案设计、数据路由、迁移链路、灰度验证和风险兜底，协同上下游完成核心链路改造。",
+      result: "完成海量订单数据迁移及数据库架构演进，为未来业务增长提供稳定的数据基础设施。",
     },
     responsibilities: [
-      "梳理用户输入到任务结构化输出的流程",
-      "设计项目看板、风险提示和下一步建议界面",
-      "编写 Prompt 规则，限制输出格式并减少幻觉",
+      "分析订单数据增长趋势、容量瓶颈与查询风险",
+      "参与分库分表架构方案和迁移方案设计",
+      "推进历史数据迁移、灰度验证与问题治理",
+      "保障升级过程中的核心交易链路稳定性",
     ],
-    outcome:
-      "形成一个可演示原型，可用于面试展示 AI 产品思路和工程落地能力。",
-    metric: "Agent workflow",
-    stack: ["React", "TypeScript", "LLM API", "Prompt Engineering"],
+    outcome: "有效解决单表容量瓶颈和数据持续增长带来的溢出风险，提升订单系统扩展能力。",
+    metric: "亿级订单支撑",
+    stack: ["Java", "Spring Cloud", "MySQL", "Sharding", "Redis", "Kafka"],
   },
   {
-    title: "数据可视化 Dashboard",
-    type: "Frontend",
-    period: "2024",
-    role: "前端开发 / 数据表达",
-    summary:
-      "将指标、趋势和异常点整理成适合业务人员快速扫描的交互式面板。",
-    background:
-      "业务数据常常分散在表格和报告里，阅读成本高。该项目关注如何用清晰交互帮助非技术用户理解关键变化。",
+    title: "订单管理站点全栈开发",
+    type: "Full-stack Admin",
+    period: "核心项目",
+    role: "全栈开发 / 独立交付",
+    summary: "从 0 到 1 落地订单管理后台，覆盖数据库设计、后端接口、Vue3 页面、联调与上线交付。",
+    background: "订单管理、查询、履约和异常处理需要可配置、可追踪、易操作的后台工具，提高运营处理效率和研发交付效率。",
     star: {
-      situation: "业务指标散落在表格里，趋势和异常点不容易被快速发现。",
-      task: "把核心指标、趋势变化和异常信号整理成适合业务人员扫描的 Dashboard。",
-      action:
-        "搭建指标卡、趋势图、筛选器和详情面板，并优化不同屏幕尺寸下的信息层级。",
-      result:
-        "让关键指标更容易被理解，也沉淀了数据表达、交互设计和前端工程能力。",
+      situation: "业务侧需要统一后台承接订单查询、审核、异常处理和规则配置，原有工具分散、体验和效率不足。",
+      task: "负责订单管理站点及后台系统的全栈开发，完成从需求到上线的完整交付。",
+      action: "独立完成需求分析、数据库设计、后端接口开发、Vue3 + TypeScript 页面实现、前后端联调及上线。",
+      result: "落地多个中大型后台能力，沉淀通用组件和公共能力，提升后台研发效率及用户使用体验。",
     },
     responsibilities: [
-      "搭建指标卡、趋势图、筛选器和详情面板",
-      "优化移动端布局和不同屏幕下的信息层级",
-      "根据用户反馈调整图表密度和文案表达",
+      "梳理产品需求并拆解前后端实现方案",
+      "完成数据库表结构、接口协议和后端业务逻辑",
+      "使用 Vue3、TypeScript、Element Plus 开发管理后台页面",
+      "完成联调、测试支持、上线发布和持续迭代",
     ],
-    outcome:
-      "提升数据浏览效率，也展示了对产品体验和工程细节的综合判断。",
-    metric: "Data clarity",
-    stack: ["React", "Charts", "Responsive UI", "Data Modeling"],
+    outcome: "具备独立完成项目交付的全栈能力，并对电商订单管理领域形成较深入理解。",
+    metric: "0→1 交付",
+    stack: ["Java", "Spring Boot", "Vue3", "TypeScript", "Element Plus", "MySQL"],
+  },
+  {
+    title: "订单拆单标准化与异常治理",
+    type: "Order Platform",
+    period: "核心项目",
+    role: "主导者 / 规则建模 / 平台化建设",
+    summary: "统一拆单模型、规则和流程，并建设订单超时中心、预处理审核平台与异常处理闭环。",
+    background: "订单拆单和异常处理规则复杂，容易造成业务理解成本高、系统维护成本高和履约效率下降。",
+    star: {
+      situation: "拆单逻辑分散且规则复杂，异常处理链路也需要更高自动化与闭环能力。",
+      task: "主导拆单标准化建设，并完善订单超时、预处理审核和异常治理体系。",
+      action: "统一拆单模型、拆单规则和处理流程，设计订单超时中心与预处理审核平台，沉淀规则配置及审核流能力。",
+      result: "线上订单处理闭环率达到 100%，订单拆单率由 15% 优化至 6%，降低系统复杂度并提升履约体验。",
+    },
+    responsibilities: [
+      "统一拆单模型、规则和标准处理流程",
+      "设计订单超时中心、规则配置和自动处理能力",
+      "建设预处理审核平台与异常处理闭环",
+      "推进平台化能力沉淀，降低重复开发成本",
+    ],
+    outcome: "提升订单异常治理效率，降低业务复杂度，提高系统可维护性和履约体验。",
+    metric: "15% → 6%",
+    stack: ["Java", "Spring Boot", "Rule Engine", "MySQL", "Redis", "Vue3"],
   },
 ];
 
 const skillGroups = [
   {
-    title: "Frontend Systems",
-    summary: "把信息结构、交互状态和响应式体验做成稳定页面。",
-    skills: ["React", "TypeScript", "HTML/CSS", "Responsive UI", "State Design"],
+    title: "Java Backend",
+    summary: "围绕交易订单核心链路完成系统设计、接口开发、性能优化和上线交付。",
+    skills: ["Java", "Spring Boot", "Spring Cloud", "MySQL", "Redis", "Kafka"],
   },
   {
-    title: "Agent & LLM",
-    summary: "把模型能力接入真实任务，约束输出并减少不可靠回答。",
-    skills: ["LLM API", "Prompt Design", "Agent Workflow", "RAG Basics", "Safety Rules"],
+    title: "Data & Search",
+    summary: "处理亿级订单规模下的数据扩展、异构查询、一致性校验和稳定性治理。",
+    skills: ["Elasticsearch", "Sharding", "Binlog", "MQ Sync", "DSL", "Data Reconcile"],
   },
   {
-    title: "Deployment",
-    summary: "用轻量方案完成可访问、可演示、可迭代的上线闭环。",
-    skills: ["GitHub Pages", "Cloudflare Worker", "API Proxy", "Secrets", "Rate Limit"],
+    title: "Full-stack Delivery",
+    summary: "能独立完成数据库设计、后端接口、Vue3 页面、联调测试和上线交付。",
+    skills: ["Vue3", "TypeScript", "Element Plus", "API Design", "Admin System"],
   },
   {
-    title: "Product Thinking",
-    summary: "用 STAR 和业务语言解释项目价值，让技术成果能被 HR 理解。",
-    skills: ["STAR Storytelling", "JD Matching", "Prototype", "User Flow", "Metrics"],
+    title: "AI-assisted Engineering",
+    summary: "熟练使用 AI 编程工具提升需求分析、代码生成、排障优化和文档沉淀效率。",
+    skills: ["Cursor", "Claude Code", "Copilot", "Prompting", "Tech Docs"],
   },
 ];
 
 const experienceEvents = [
   {
-    title: "校园基础",
-    time: "2021 - 2023",
+    title: "985 科班基础",
+    time: "校园阶段",
     type: "Campus",
     color: "#ff9d3e",
     size: 118,
     x: 20,
     y: 58,
-    summary: "建立计算机、前端和产品原型能力。",
-    detail:
-      "这里替换成你的学校、专业、核心课程、实验室或竞赛经历。重点写和目标岗位相关的训练，而不是堆所有课程。",
-    role: "学生 / 项目成员",
-    related: ["数据可视化 Dashboard"],
+    summary: "985 院校计算机科班出身，具备扎实计算机基础和快速学习能力。",
+    detail: "计算机科班背景让候选人具备较好的系统学习能力，能够快速理解新业务、新技术，并结合真实项目完成落地。",
+    role: "计算机专业学生",
+    related: ["Java 后端能力", "系统设计基础"],
   },
   {
-    title: "项目实践",
-    time: "2023 - 2024",
-    type: "Build",
+    title: "交易订单核心研发",
+    time: "工作阶段",
+    type: "Backend",
     color: "#f4f4ef",
-    size: 104,
+    size: 128,
     x: 39,
     y: 27,
-    summary: "把想法做成可演示原型，积累真实作品。",
-    detail:
-      "这里放校园项目、课程设计、开源项目或个人 Demo。强调你负责的模块、遇到的问题和最后做出的东西。",
-    role: "前端实现 / 原型设计",
-    related: ["AI 项目管理助手", "数据可视化 Dashboard"],
+    summary: "负责订单管理、订单查询、订单履约等核心系统研发，支撑高并发交易场景。",
+    detail: "承担核心系统架构设计、功能开发、技术优化和上线交付，持续推进性能优化、代码重构、线上问题治理及公共能力建设。",
+    role: "Java 后端工程师 / 核心研发",
+    related: ["订单 Elasticsearch 异构查询平台", "订单分库分表架构升级"],
   },
   {
-    title: "实习工作",
-    time: "2024",
-    type: "Work",
+    title: "管理后台全栈交付",
+    time: "工作阶段",
+    type: "Full-stack",
     color: "#9a9a90",
-    size: 128,
+    size: 112,
     x: 64,
     y: 60,
-    summary: "进入真实业务环境，参与页面、接口和 AI 工具建设。",
-    detail:
-      "这里替换成公司、岗位、时间、团队背景。建议写清楚你接触的业务、承担的角色、协作方式和可量化结果。",
-    role: "实习工程师 / 功能负责人",
-    related: ["AI 项目管理助手"],
+    summary: "独立完成订单管理后台从需求分析到上线的完整交付。",
+    detail: "熟悉 Vue3、TypeScript、Element Plus，能完成数据库设计、后端接口、前端页面、联调测试和持续迭代。",
+    role: "Java 全栈开发 / 独立交付",
+    related: ["订单管理站点全栈开发"],
   },
   {
-    title: "Agent 方向",
-    time: "2025 - Now",
+    title: "AI 提效与个人 Agent",
+    time: "Now",
     type: "AI",
     color: "#ff9d3e",
     size: 112,
     x: 80,
     y: 34,
-    summary: "聚焦 LLM 应用、个人 Agent 和可部署产品。",
-    detail:
-      "这里放你最新的 AI 方向项目、研究、文章或产品实验。它应该成为 HR 判断你当前方向的核心节点。",
-    role: "产品工程 / Agent 接入",
-    related: ["个人 Agent 网站", "AI 项目管理助手"],
+    summary: "熟练使用 Cursor、Claude Code、Copilot，并将 AI 用于工程提效和个人 Agent 展示。",
+    detail: "将 AI 应用于需求分析、代码生成、项目理解、问题排查、代码优化和技术文档编写；个人站点通过 Cloudflare Worker 接入免费模型，为 HR 提供可问答的个人 Agent。",
+    role: "AI 提效型工程师",
+    related: ["个人 Agent 网站"],
   },
 ];
 
 const fallbackProfile = {
   name: "吴臻愿",
-  role: "AI 应用 / Web 工程候选人",
-  strengths: ["前端产品实现", "LLM Agent 应用", "快速原型与工程落地"],
+  role: "Java 后端 / Java 全栈 / AI 提效型工程候选人",
+  strengths: ["丰富 Java 后端经验", "订单核心系统经验", "全栈独立交付", "熟练使用 AI 工具"],
   projects: projects.map((project) => `${project.title}：${project.summary}`),
 };
 
@@ -370,11 +376,11 @@ function localAnswer(question) {
   }
 
   if (q.includes("岗位") || q.includes("匹配") || q.includes("jd")) {
-    return `从当前资料看，最匹配的是 AI 应用工程师、前端工程师、Agent 产品工程师。匹配点：能把模糊需求拆成界面、流程和模型接入；能用低成本方案上线；项目表达里有 STAR 结构。风险点：当前仍是模板资料，需要补真实公司、学校、指标和项目结果，回答才会更像正式候选人画像。`;
+    return `从当前资料看，最匹配的是 Java 后端工程师、Java 全栈工程师、交易订单/电商业务后端岗位，也可以匹配强调 AI 提效能力的工程岗位。核心匹配点是：有交易订单核心系统经验，熟悉 Spring Boot、Spring Cloud、MySQL、Redis、Kafka、Elasticsearch，能独立做后台全栈交付，并熟练使用 Cursor、Claude Code、Copilot 提升研发效率。`;
   }
 
   if (q.includes("时间") || q.includes("校园") || q.includes("工作") || q.includes("经历")) {
-    return "目前 Experience Timeline 包含四个占位阶段：校园基础、项目实践、实习工作、Agent 方向。你把真实学校、公司、时间和成果替换进去后，我可以按学校到工作的顺序解释成长路径和岗位相关性。";
+    return "经历脉络可以概括为：985 院校计算机科班基础 → 进入交易订单核心业务研发 → 主导订单查询、分库分表、ES 查询、拆单标准化等核心平台建设 → 进一步使用 AI 工具提升研发和交付效率，并通过个人 Agent 网站展示候选人信息。";
   }
 
   if (q.includes("角色") || q.includes("负责")) {
@@ -391,10 +397,10 @@ function localAnswer(question) {
   }
 
   if (q.includes("追问") || q.includes("问题")) {
-    return "HR 可以继续问：1. 你在项目中最关键的技术决策是什么？2. 哪个项目最能证明你的 AI 应用能力？3. 遇到模型回答不稳定时怎么处理？4. 你在项目里负责到什么深度？5. 如果接到真实业务 JD，你会如何拆解第一版方案？";
+    return "HR 可以继续问：1. 订单 ES 平台如何保证数据一致性？2. 分库分表迁移如何灰度和兜底？3. 大促稳定性保障具体做了哪些压测、限流和预案？4. 订单拆单率从 15% 到 6% 的关键动作是什么？5. 你如何用 AI 工具提升需求分析、编码和排障效率？";
   }
 
-  return `可以这样介绍：${fallbackProfile.name} 是一位偏 AI 应用和 Web 产品落地的候选人，擅长把想法快速变成可用原型。核心能力包括 ${fallbackProfile.strengths.join("、")}。当前页面还是模板状态，替换真实简历后，Agent 会围绕你的资料回答。`;
+  return `可以这样介绍：${fallbackProfile.name} 是一位 ${fallbackProfile.role}，核心优势包括 ${fallbackProfile.strengths.join("、")}。他有交易订单核心系统研发经验，参与订单管理、查询、履约、分库分表、ES 搜索和异常治理等方向，并能独立完成管理后台全栈交付。`;
 }
 
 async function askAgent(question) {

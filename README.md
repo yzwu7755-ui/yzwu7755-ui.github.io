@@ -71,5 +71,18 @@ window.PERSONAL_AGENT_CONFIG = {
 - `app.js` 里的 `projects`
 - `app.js` 里的 `experienceEvents`
 - `profile/resume.md`
+- `profile/personal-advantages.md`：个人优势
+- `profile/work-content.md`：工作内容
+- `profile/work-achievements.md`：工作业绩
 
 Agent 的回答质量主要取决于 `PROFILE` 写得是否具体。
+
+## Agent 知识库
+
+当前个人 Agent 的知识分成三份 Markdown：
+
+1. `profile/personal-advantages.md`：面向 HR 的候选人核心优势，包括 Java 后端、全栈、AI 工具、985 科班、学习能力和独立交付能力。
+2. `profile/work-content.md`：日常工作职责，包括交易订单核心研发、订单查询平台、订单管理后台、分库分表、ES 查询平台、拆单标准化、订单超时中心、大促稳定性保障等。
+3. `profile/work-achievements.md`：核心业绩与可量化结果，包括大促无重大故障、亿级订单支撑、万级复杂查询、数十万+查询流量、数百个业务需求交付、拆单率 15% 优化至 6% 等。
+
+注意：GitHub Pages 是纯静态站，Cloudflare Worker 不能自动读取仓库里的 Markdown。要让线上 Agent 真正使用这些资料，需要把关键事实同步进 `worker/index.js` 的 `PROFILE`，当前版本已经完成同步。
