@@ -24,6 +24,7 @@
         <a href="#agent">智能体</a>
         <a href="#timeline">经历</a>
         <a href="#projects">项目</a>
+        <a href="#ai-agent">AI 调优</a>
         <a href="#architecture">架构</a>
         <a href="#agent">问答</a>
       </nav>
@@ -48,14 +49,14 @@
           </div>
           <div class="hero-actions" aria-label="核心入口">
             <a class="action-chip primary" href="#agent">
-              <span class="action-label">个人智能体</span>
-              <span class="action-cue">点击提问 ↗</span>
+              <span class="action-label">请点击此处进行对话</span>
+              <span class="action-cue">Personal Agent ↗</span>
             </a>
             <a class="action-chip" href="#projects">
               项目经历
             </a>
-            <a class="action-chip subtle" href="./profile/resume.md" target="_blank" rel="noreferrer">
-              简历
+            <a class="action-chip subtle" href="#timeline">
+              成长经历
             </a>
           </div>
           <div class="skill-marquee" aria-label="核心技能">
@@ -71,7 +72,7 @@
           <div class="agent-header">
             <div>
               <strong>个人智能体</strong>
-              <span>回答基于经历、项目和简历资料；PS：基于 AI 大模型生成，结果以本人回答为准。</span>
+              <span>回答基于成长经历、项目和知识库资料；PS：基于 AI 大模型生成，结果以本人回答为准。</span>
             </div>
             <div class="model-status" aria-label="模型状态">
               <span><small>Model</small><strong id="agent-model">demo</strong></span>
@@ -140,6 +141,37 @@
         <div id="skill-grid" class="skill-grid" aria-label="技能列表"></div>
       </section>
 
+      <section class="section ai-section" id="ai-agent">
+        <div class="section-title">
+          <p class="eyebrow">AI 智能体调优</p>
+          <h2>大模型交互、提示词工程与知识库构建</h2>
+          <p>这个站点的最大亮点不是静态展示，而是把个人经历转成可问答的候选人知识库，并通过 Serverless API 接入免费大模型，实现低成本、可维护、可追问的个人智能体。</p>
+        </div>
+
+        <div class="ai-lab">
+          <article class="ai-lab-card featured">
+            <span>01 / Interaction</span>
+            <h3>大模型交互链路</h3>
+            <p>前端收集 HR 的自然语言问题，经 Cloudflare Worker 统一做 CORS、限流、密钥注入、知识库装配和模型调用，再把回答返回到页面。前端不保存 API Key，本地打开 index.html 也能通过 Worker 直接调试。</p>
+          </article>
+          <article class="ai-lab-card">
+            <span>02 / Prompt</span>
+            <h3>提示词工程优化</h3>
+            <p>提示词按“角色目标、回答策略、事实边界、回答自检、知识库”组织，约束模型先给结论、避免编造、按问题选择 STAR / 技术栈 / 岗位匹配等结构化回答。</p>
+          </article>
+          <article class="ai-lab-card">
+            <span>03 / Knowledge Base</span>
+            <h3>Markdown 知识库</h3>
+            <p>个人优势、专业技能、工作内容、工作业绩和核心项目拆成 profile/*.md，方便后续持续维护；Worker 从 GitHub Pages 拉取并缓存，避免把全部知识写死在 JS 里。</p>
+          </article>
+          <article class="ai-lab-card">
+            <span>04 / Guardrails</span>
+            <h3>免费额度与事实保护</h3>
+            <p>模型固定使用 free 模型，设置 max_price = 0，并通过单 IP 每日配额控制调用频次；回答时只基于知识库数字和事实，不补充未提供的公司名、奖项或联系方式。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="section" id="architecture">
         <div class="section-title">
           <p class="eyebrow">站点架构</p>
@@ -198,13 +230,17 @@
               <span>Static Frontend + Worker API</span>
             </div>
             <div class="file-tree" aria-label="项目文件结构">
-              <div class="file-row"><span>index.html</span><p>页面结构、智能体入口、项目 / 技能 / 架构模块挂载点</p></div>
-              <div class="file-row"><span>styles.css</span><p>暗黑科技视觉、动态粒子、时间轴、思维导图与响应式布局</p></div>
-              <div class="file-row"><span>app.js</span><p>候选人展示数据、交互逻辑、聊天调用、本地兜底调试</p></div>
-              <div class="file-row"><span>config.js</span><p>前端 Agent Endpoint 配置，支持 file:// 本地直连 Worker</p></div>
-              <div class="file-row"><span>profile/*.md</span><p>个人优势、专业技能、工作内容、业绩与核心项目知识库</p></div>
-              <div class="file-row"><span>worker/index.js</span><p>Serverless Agent API、Prompt 编排、免费模型调用与请求限流</p></div>
-              <div class="file-row"><span>worker/wrangler.toml</span><p>Cloudflare Worker 项目配置与部署入口</p></div>
+              <div class="file-branch root"><span>personal-agent-site/</span><p>个人网站与个人智能体项目根目录</p></div>
+              <div class="file-branch level-1"><span>frontend/</span><p>GitHub Pages 静态前端</p></div>
+              <div class="file-row level-2"><span>index.html</span><p>页面结构、智能体入口、项目 / 技能 / AI 调优 / 架构模块挂载点</p></div>
+              <div class="file-row level-2"><span>styles.css</span><p>暗黑科技视觉、动态粒子、时间轴、思维导图与响应式布局</p></div>
+              <div class="file-row level-2"><span>app.js</span><p>候选人展示数据、交互逻辑、聊天调用、本地兜底调试</p></div>
+              <div class="file-row level-2"><span>config.js</span><p>前端 Agent Endpoint 配置，支持 file:// 本地直连 Worker</p></div>
+              <div class="file-branch level-1"><span>profile/</span><p>Markdown 候选人知识库</p></div>
+              <div class="file-row level-2"><span>*.md</span><p>个人优势、专业技能、工作内容、业绩、成长经历与核心项目详情</p></div>
+              <div class="file-branch level-1"><span>worker/</span><p>Cloudflare Worker Serverless API</p></div>
+              <div class="file-row level-2"><span>index.js</span><p>知识库加载、Prompt 编排、免费模型调用、请求限流与事实边界控制</p></div>
+              <div class="file-row level-2"><span>wrangler.toml</span><p>Worker 项目配置、知识库地址变量和部署入口</p></div>
             </div>
           </div>
 
