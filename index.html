@@ -32,8 +32,7 @@
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <p class="availability">985 科班 · Java 后端 · 交易订单平台 · AI 工程</p>
-          <p class="eyebrow">分布式订单系统工程师</p>
+          <p class="availability">985 科班 · Java 全栈 · 交易订单平台 · AI 工程</p>
           <h1 class="nameplate">吴 臻 愿</h1>
           <div class="cursor-line" data-text="Java后端｜全栈开发｜Agent开发" aria-label="Java后端、全栈开发、Agent开发"></div>
           <p class="subtitle">
@@ -42,15 +41,17 @@
           <div class="hero-metrics" aria-label="核心项目指标">
             <span><strong>10W+</strong> 每秒请求</span>
             <span><strong>5.7TB</strong> 数据迁移</span>
-            <span><strong>99.999%+</strong> ES 可用性</span>
-            <span><strong>100%</strong> 订单闭环率</span>
+            <span><strong>99.999%+</strong> 查询可用性</span>
+            <span><strong>64×16</strong> 分库分表</span>
+            <span><strong>10亿级</strong> DB→ES 迁移</span>
+            <span><strong>20%~30%</strong> 存储成本下降</span>
           </div>
           <div class="hero-actions" aria-label="核心入口">
             <a class="action-chip primary" href="#agent">
-              Chat 个人智能体
+              个人智能体
             </a>
             <a class="action-chip" href="#projects">
-              核心项目经历
+              项目经历
             </a>
             <a class="action-chip subtle" href="./profile/resume.md" target="_blank" rel="noreferrer">
               简历
@@ -72,7 +73,10 @@
               <strong>个人智能体</strong>
               <span>回答基于经历、项目和简历资料</span>
             </div>
-            <span id="agent-status" class="status">演示模式</span>
+            <div class="model-status" aria-label="模型状态">
+              <span><small>Model</small><strong id="agent-model">demo</strong></span>
+              <span><small>Price</small><strong id="agent-free">free</strong></span>
+            </div>
           </div>
 
           <div id="chat-log" class="chat-log" aria-live="polite">
@@ -119,7 +123,7 @@
       <section class="section" id="projects">
         <div class="section-title">
           <p class="eyebrow">项目矩阵</p>
-          <h2>核心项目经历</h2>
+          <h2>项目经历</h2>
           <p>点击项目卡片进入详情，按项目背景、目标、关键行动、结果展示技术栈和个人角色。</p>
         </div>
 
@@ -144,44 +148,44 @@
         </div>
 
         <div class="architecture-panel" aria-label="个人站点技术架构图">
-          <div class="architecture-map">
-            <div class="arch-node">
-              <span>访问者</span>
-              <strong>HR / 面试官</strong>
-              <small>打开个人网站并提问</small>
+          <div class="architecture-orbit">
+            <div class="orbit-ring one" aria-hidden="true"></div>
+            <div class="orbit-ring two" aria-hidden="true"></div>
+            <div class="orbit-core">
+              <span>个人智能体</span>
+              <strong>Personal Agent</strong>
+              <small>简历问答 · 项目复盘 · 岗位匹配</small>
             </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node">
-              <span>静态前端</span>
-              <strong>GitHub Pages</strong>
-              <small>HTML · CSS · JavaScript</small>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node highlight">
-              <span>接口代理</span>
-              <strong>Cloudflare Worker</strong>
-              <small>隐藏 API Key · 限制免费模型</small>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node">
-              <span>模型服务</span>
-              <strong>OpenRouter</strong>
-              <small>Model: openrouter/free · free</small>
-            </div>
-          </div>
 
-          <div class="architecture-layers">
-            <div>
+            <div class="orbit-node node-visitor">
+              <span>访问端</span>
+              <strong>HR / 面试官</strong>
+              <small>浏览网站、点击预设问题或输入岗位要求</small>
+            </div>
+            <div class="orbit-node node-frontend">
+              <span>前端</span>
+              <strong>GitHub Pages</strong>
+              <small>index.html · styles.css · app.js · config.js</small>
+            </div>
+            <div class="orbit-node node-knowledge">
               <span>知识库</span>
-              <p>Markdown：个人优势、专业技能、工作内容、工作业绩、核心项目。</p>
+              <strong>Markdown Profile</strong>
+              <small>优势、技能、工作内容、业绩、项目详情</small>
             </div>
-            <div>
-              <span>安全策略</span>
-              <p>API Key 只放 Worker Secret；前端不保存密钥；`max_price` 固定为 0。</p>
+            <div class="orbit-node node-worker">
+              <span>后端代理</span>
+              <strong>Cloudflare Worker</strong>
+              <small>CORS · Rate Limit · Secret · Prompt</small>
             </div>
-            <div>
-              <span>免费保护</span>
-              <p>模型固定为 `openrouter/free`，拒绝非 free 模型，单 IP 每日限制 20 次。</p>
+            <div class="orbit-node node-model">
+              <span>模型</span>
+              <strong>OpenRouter</strong>
+              <small>Model: openrouter/free · Price: free</small>
+            </div>
+            <div class="orbit-node node-guard">
+              <span>费用保护</span>
+              <strong>Free Guard</strong>
+              <small>拒绝非 free 模型 · max_price = 0 · 单 IP 限流</small>
             </div>
           </div>
 

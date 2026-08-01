@@ -24,7 +24,7 @@ const projects = [
     ],
     outcome: "推动订单管理站点由功能型后台向标准化、平台化管理系统演进，减少重复开发和跨系统沟通成本。",
     metric: "数百需求",
-    stack: ["Java", "Spring Boot", "MyBatis", "MySQL", "Vue3", "TypeScript", "Element Plus", "权限模型"],
+    stack: ["Java", "Spring Boot", "MyBatis", "MySQL", "Vue3", "TypeScript", "Element Plus", "Axios", "Vite", "Pinia", "权限模型", "审计日志"],
   },
   {
     title: "订单分库分表与 ES 统一查询平台",
@@ -37,7 +37,7 @@ const projects = [
       situation: "订单数据从单库单表持续增长，查询性能、DDL 效率、复杂检索和容量扩展都成为核心瓶颈。",
       task: "主导分库分表与 ES 统一查询平台建设，完成数据迁移、分布式 ID、查询模型、数据同步和一致性校验闭环。",
       action: "完成 5.7TB 单库向 64 库 × 16 表迁移；建设雪花算法分布式 ID；设计分片分组 + 批量查询 + 有界并发模型；构建 Canal Binlog + 业务 MQ 双链路同步、ES 查询服务、降级容灾和双模式对账。",
-      result: "单表规模由亿级降至百万级，存储成本下降 20%~30%，稳定支撑 10W+ 每秒请求，ES 服务可用性达到 99.999%+，完成 10 亿级数据迁移。",
+      result: "单表规模由亿级降至百万级，存储成本下降 20%~30%，稳定支撑 10W+ 每秒请求，查询可用性达到 99.999%+，完成 10 亿级数据迁移。",
     },
     responsibilities: [
       "设计并落地 64 库 × 16 表分库分表架构和迁移方案",
@@ -48,7 +48,7 @@ const projects = [
     ],
     outcome: "构建高性能、高可用、可扩展的统一订单查询平台，显著提升查询性能、数据扩展能力和业务接入效率。",
     metric: "10W+ 每秒请求",
-    stack: ["Spring Cloud", "MySQL", "Redis", "Elasticsearch", "Kafka", "Canal", "XXL-JOB", "Apollo"],
+    stack: ["Spring Cloud", "Spring Boot", "MyBatis", "MySQL", "Redis", "Elasticsearch", "Kafka", "Canal", "XXL-JOB", "Apollo", "Maven", "分库分表"],
   },
   {
     title: "订单超时统一闭环与预处理审核优化",
@@ -72,7 +72,7 @@ const projects = [
     ],
     outcome: "将订单异常处理从人工关单和排查升级为自动化闭环，提升订单状态准确性和运营处理效率。",
     metric: "闭环率 100%",
-    stack: ["Java", "Spring Boot", "MySQL", "Redis", "XXL-JOB", "幂等", "重试补偿", "灰度发布"],
+    stack: ["Java", "Spring Boot", "MyBatis", "MySQL", "Redis", "XXL-JOB", "状态流转", "规则配置", "幂等", "重试补偿", "监控告警", "灰度发布"],
   },
   {
     title: "订单拆单系统标准化重构",
@@ -96,7 +96,7 @@ const projects = [
     ],
     outcome: "降低拆单复杂度和规则变更风险，让拆单能力从定制逻辑升级为可灰度、可验证、可扩展的平台能力。",
     metric: "-6.04%",
-    stack: ["Spring Cloud", "Spring Boot", "MyBatis", "MySQL", "Redis", "Kafka", "Apollo", "XXL-JOB"],
+    stack: ["Spring Cloud", "Spring Boot", "MyBatis", "MySQL", "Redis", "Elasticsearch", "Kafka", "Apollo", "XXL-JOB", "Maven", "策略模式", "工厂模式"],
   },
 ];
 
@@ -218,7 +218,8 @@ const fallbackProfile = {
 const chatLog = document.querySelector("#chat-log");
 const form = document.querySelector("#chat-form");
 const input = document.querySelector("#message-input");
-const statusBadge = document.querySelector("#agent-status");
+const modelBadge = document.querySelector("#agent-model");
+const freeBadge = document.querySelector("#agent-free");
 const projectGrid = document.querySelector("#project-grid");
 const skillGrid = document.querySelector("#skill-grid");
 const experienceList = document.querySelector("#experience-list");
@@ -227,7 +228,8 @@ const projectDetail = document.querySelector("#project-detail");
 const dialogClose = document.querySelector(".dialog-close");
 
 if (AGENT_ENDPOINT) {
-  statusBadge.textContent = "Model: openrouter/free · free";
+  modelBadge.textContent = "openrouter/free";
+  freeBadge.textContent = "free";
 }
 
 function renderProjects() {
@@ -247,7 +249,7 @@ function renderProjects() {
             <strong>${project.metric}</strong>
           </div>
           <div class="project-stack">
-            ${project.stack.slice(0, 4).map((item) => `<span>${item}</span>`).join("")}
+            ${project.stack.map((item) => `<span>${item}</span>`).join("")}
           </div>
           <div class="project-role">个人角色 · ${project.role}</div>
           <div class="project-result">项目结果 · ${project.star.result}</div>
@@ -427,7 +429,7 @@ function localAnswer(question) {
   }
 
   if (q.includes("项目") || q.includes("亮点")) {
-    return `当前展示了 ${projects.length} 个核心项目：${projects.map((project) => project.title).join("、")}。最突出的亮点是：分库分表 + ES 查询平台支撑 10W+ 每秒请求、ES 可用性 99.999%+、5.7TB 数据迁移；拆单标准化让新业务接入从 3 天缩短至 1 天；订单超时闭环实现线上订单闭环率 100%。`;
+    return `当前展示了 ${projects.length} 个核心项目：${projects.map((project) => project.title).join("、")}。最突出的亮点是：分库分表 + ES 查询平台支撑 10W+ 每秒请求、查询可用性 99.999%+、5.7TB 数据迁移、64×16 分库分表；拆单标准化让新业务接入从 3 天缩短至 1 天；订单超时闭环实现线上订单闭环率 100%。`;
   }
 
   if (q.includes("追问") || q.includes("问题")) {
@@ -457,7 +459,8 @@ async function askAgent(question) {
 
   const data = await response.json();
   if (data.model) {
-    statusBadge.textContent = `Model: ${data.model} · free`;
+    modelBadge.textContent = data.model;
+    freeBadge.textContent = "free";
   }
   return data.answer || "我暂时没有拿到有效回答。";
 }
