@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="科技暗黑风个人网站与个人 Agent，展示候选人优势、完整经历和 STAR 项目案例。"
+      content="科技暗黑风个人网站与个人智能体，展示候选人优势、完整经历和项目复盘案例。"
     />
-    <title>吴臻愿 | Personal Agent</title>
+    <title>吴臻愿 | 个人智能体</title>
     <link rel="icon" href="./public/favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -21,7 +21,7 @@
         <span>吴臻愿</span>
       </a>
       <nav class="nav-links" aria-label="页面导航">
-        <a href="#agent">Agent</a>
+        <a href="#agent">智能体</a>
         <a href="#timeline">经历</a>
         <a href="#projects">项目</a>
         <a href="#architecture">架构</a>
@@ -32,17 +32,23 @@
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <p class="availability">Java Backend · Full-stack · AI-assisted Engineering</p>
-          <p class="eyebrow">Order Platform Engineer</p>
+          <p class="availability">985 科班 · Java 后端 · 交易订单平台 · AI 工程</p>
+          <p class="eyebrow">分布式订单系统工程师</p>
           <h1 class="nameplate">吴 臻 愿</h1>
-          <div class="cursor-line" aria-hidden="true">—|</div>
+          <div class="cursor-line" aria-hidden="true">Java后端｜全栈开发｜Agent开发_</div>
           <p class="subtitle">
-            我最大的优势：丰富 Java 后端经验 + 全栈交付能力 + 熟练使用 AI 提升研发效率。
+            我最大的优势：能把复杂交易订单系统做成稳定、可扩展、可交付的平台能力。
           </p>
+          <div class="hero-metrics" aria-label="核心项目指标">
+            <span><strong>10W+</strong> 每秒请求</span>
+            <span><strong>5.7TB</strong> 数据迁移</span>
+            <span><strong>99.999%+</strong> ES 可用性</span>
+            <span><strong>100%</strong> 订单闭环率</span>
+          </div>
           <div class="hero-actions" aria-label="核心入口">
             <a class="action-chip primary" href="#agent">
               <span>01</span>
-              直接问 Agent
+              直接问智能体
             </a>
             <a class="action-chip" href="#projects">
               <span>02</span>
@@ -55,18 +61,18 @@
           </div>
           <div class="skill-marquee" aria-label="核心技能">
             <div>
-              GitHub Pages ✦ Cloudflare Worker ✦ OpenRouter Free ✦ Static HTML/CSS/JS ✦ Personal Agent ✦ STAR Project Q&A ✦ Free Model Router ✦ API Secret Proxy ✦
-              GitHub Pages ✦ Cloudflare Worker ✦ OpenRouter Free ✦ Static HTML/CSS/JS ✦ Personal Agent ✦ STAR Project Q&A ✦ Free Model Router ✦ API Secret Proxy ✦
+              Java 后端 ✦ Spring Boot ✦ 微服务治理 ✦ MySQL 分库分表 ✦ Redis 缓存 ✦ Kafka 消息 ✦ Elasticsearch 查询 ✦ Vue3 全栈后台 ✦ TypeScript ✦ AI 编程提效 ✦
+              Java 后端 ✦ Spring Boot ✦ 微服务治理 ✦ MySQL 分库分表 ✦ Redis 缓存 ✦ Kafka 消息 ✦ Elasticsearch 查询 ✦ Vue3 全栈后台 ✦ TypeScript ✦ AI 编程提效 ✦
             </div>
           </div>
         </div>
 
-        <aside id="agent" class="agent-shell hero-agent" aria-label="个人 Agent">
+        <aside id="agent" class="agent-shell hero-agent" aria-label="个人智能体">
           <div class="agent-aura" aria-hidden="true"></div>
           <div class="agent-header">
             <div>
-              <p class="eyebrow">Recruiter Console</p>
-              <strong>个人 Agent</strong>
+              <p class="eyebrow">招聘问答控制台</p>
+              <strong>个人智能体</strong>
               <span>回答基于经历、项目和简历资料</span>
             </div>
             <span id="agent-status" class="status">演示模式</span>
@@ -75,18 +81,18 @@
           <div id="chat-log" class="chat-log" aria-live="polite">
             <div class="message agent">
               <p>
-                你好，我是吴臻愿的个人 Agent。你可以问我：Java 后端能力、订单核心项目、全栈交付经验、AI 工具使用、项目 STAR、候选人角色和 JD 匹配度。
+                你好，我是吴臻愿的个人智能体。你可以问我：Java 后端能力、分库分表、ES 查询平台、订单管理后台、拆单标准化、AI 工程能力、项目复盘和岗位匹配度。
               </p>
             </div>
           </div>
 
           <div class="suggestions" aria-label="推荐问题">
             <button type="button" data-prompt="请用 30 秒向 HR 介绍我，突出最大优势">30 秒介绍</button>
-            <button type="button" data-prompt="按学校到工作的顺序解释我的经历">经历脉络</button>
-            <button type="button" data-prompt="用 STAR 法则讲一个核心项目">STAR 项目</button>
-            <button type="button" data-prompt="我在主要项目里分别扮演什么角色？">项目角色</button>
-            <button type="button" data-prompt="如果我投 AI 应用工程师，匹配点和风险点是什么？">岗位匹配</button>
-            <button type="button" data-prompt="帮 HR 生成 5 个可以继续追问我的问题">追问建议</button>
+            <button type="button" data-prompt="用项目复盘方式讲订单分库分表与 ES 统一查询平台">分库分表复盘</button>
+            <button type="button" data-prompt="解释我的 Java 后端技术栈和技术深度">技术栈</button>
+            <button type="button" data-prompt="订单管理站点项目里我具体负责了什么？">项目角色</button>
+            <button type="button" data-prompt="如果我投 Java 后端或电商交易岗位，匹配点和风险点是什么？">岗位匹配</button>
+            <button type="button" data-prompt="帮技术面试官生成 5 个可以继续追问我的问题">追问建议</button>
           </div>
 
           <form id="chat-form" class="chat-form">
@@ -95,18 +101,18 @@
               id="message-input"
               name="message"
               rows="3"
-              placeholder="问经历细节、项目 STAR、技术栈，或粘贴 JD..."
+              placeholder="问经历细节、项目复盘、技术栈，或粘贴岗位要求..."
               required
             ></textarea>
-            <button type="submit"><span>TRANSMIT</span></button>
+            <button type="submit"><span>发送</span></button>
           </form>
         </aside>
       </section>
 
       <section class="section" id="timeline">
         <div class="section-title">
-          <p class="eyebrow">Career</p>
-          <h2>Experience Timeline</h2>
+          <p class="eyebrow">成长经历</p>
+          <h2>经历时间轴</h2>
           <p>从学校到工作经历。点击任意经历查看阶段详情、角色、关联项目和可追问方向。</p>
         </div>
 
@@ -115,9 +121,9 @@
 
       <section class="section" id="projects">
         <div class="section-title">
-          <p class="eyebrow">Project Matrix</p>
+          <p class="eyebrow">项目矩阵</p>
           <h2>核心项目经历</h2>
-          <p>点击项目卡片进入详情，按 STAR 法则展示背景、任务、行动、结果，以及技术栈和你的角色。</p>
+          <p>点击项目卡片进入详情，按项目背景、目标、关键行动、结果展示技术栈和个人角色。</p>
         </div>
 
         <div id="project-grid" class="project-grid" aria-label="项目列表"></div>
@@ -125,9 +131,9 @@
 
       <section class="section" id="skills">
         <div class="section-title">
-          <p class="eyebrow">Skill Architecture</p>
+          <p class="eyebrow">技能架构</p>
           <h2>技能结构</h2>
-          <p>按真实工作流组织技能：从界面实现、Agent 接入，到部署上线和产品表达。</p>
+          <p>按真实工作流组织技能：Java 基础、微服务、数据架构、ES 查询、全栈后台和 AI 工程能力。</p>
         </div>
 
         <div id="skill-grid" class="skill-grid" aria-label="技能列表"></div>
@@ -135,9 +141,9 @@
 
       <section class="section" id="architecture">
         <div class="section-title">
-          <p class="eyebrow">Site Architecture</p>
+          <p class="eyebrow">站点架构</p>
           <h2>个人站点架构</h2>
-          <p>这个站点使用纯静态前端 + Cloudflare Worker + OpenRouter 免费模型，避免购买服务器，也避免在前端暴露 API Key。</p>
+          <p>这个站点使用纯静态前端 + 云函数代理 + 免费模型路由，避免购买服务器，也避免在前端暴露模型密钥。</p>
         </div>
 
         <div class="architecture-grid" aria-label="个人站点技术架构">
@@ -145,13 +151,13 @@
             <span class="architecture-index">01</span>
             <h3>技术栈</h3>
             <div class="architecture-tags">
-              <span>GitHub Pages</span>
-              <span>HTML / CSS / JavaScript</span>
-              <span>Cloudflare Worker</span>
-              <span>OpenRouter Free</span>
-              <span>Static Config</span>
-              <span>STAR Prompt</span>
-              <span>Markdown Knowledge Base</span>
+              <span>静态页面托管</span>
+              <span>原生前端三件套</span>
+              <span>云函数代理层</span>
+              <span>免费模型路由</span>
+              <span>静态配置文件</span>
+              <span>项目复盘提示词</span>
+              <span>Markdown 知识库</span>
             </div>
           </article>
 
@@ -159,11 +165,11 @@
             <span class="architecture-index">02</span>
             <h3>请求链路</h3>
             <ol class="flow-list">
-              <li>HR 打开 GitHub Pages 静态页面</li>
-              <li>浏览器请求 Cloudflare Worker</li>
-              <li>Worker 使用 Secret 中的 OpenRouter Key</li>
-              <li>OpenRouter Free 模型生成回答</li>
-              <li>Worker 返回结果给个人 Agent 聊天框</li>
+              <li>招聘方打开静态个人网站</li>
+              <li>浏览器请求云函数代理层</li>
+              <li>代理层读取后台保存的模型密钥</li>
+              <li>免费模型生成候选人问答</li>
+              <li>代理层把结果返回聊天框</li>
             </ol>
           </article>
 
@@ -171,21 +177,21 @@
             <span class="architecture-index">03</span>
             <h3>部署步骤</h3>
             <div class="deploy-stages">
-              <span>GitHub Pages / root</span>
-              <span>Cloudflare Worker API</span>
-              <span>OpenRouter Secret</span>
-              <span>config.js endpoint</span>
+              <span>静态站点根目录</span>
+              <span>云函数接口</span>
+              <span>模型密钥</span>
+              <span>接口地址配置</span>
             </div>
           </article>
 
           <article class="architecture-card">
             <span class="architecture-index">04</span>
-            <h3>API Key 申请</h3>
+            <h3>模型密钥申请</h3>
             <ol>
-              <li>注册 OpenRouter</li>
-              <li>创建 API Key</li>
-              <li>不要把 Key 写进 GitHub Pages</li>
-              <li>只放入 Cloudflare Worker Secret</li>
+              <li>注册模型服务平台账号</li>
+              <li>创建调用密钥</li>
+              <li>不要把密钥写进前端页面</li>
+              <li>只放入云函数后台变量</li>
             </ol>
           </article>
 
@@ -203,7 +209,7 @@
 
           <article class="architecture-card">
             <span class="architecture-index">06</span>
-            <h3>Agent 知识库</h3>
+            <h3>智能体知识库</h3>
             <ol>
               <li><code>profile/personal-advantages.md</code>：个人优势</li>
               <li><code>profile/professional-skills.md</code>：专业技能</li>
@@ -217,32 +223,32 @@
             <span class="architecture-index">07</span>
             <div class="deploy-head">
               <div>
-                <h3>Deploy Console</h3>
-                <p>项目地址、GitHub Pages 发布源和一键推送命令统一放在这里。</p>
+                <h3>部署控制台</h3>
+                <p>项目地址、静态站点发布源和一键推送命令统一放在这里。</p>
               </div>
-              <span>main → GitHub Pages</span>
+              <span>主分支 → 静态站点</span>
             </div>
 
             <div class="deploy-links">
               <a href="https://yzwu7755-ui.github.io/" target="_blank" rel="noreferrer">
-                <span>Live</span>
+                <span>线上站点</span>
                 https://yzwu7755-ui.github.io/
               </a>
               <a href="https://github.com/yzwu7755-ui/yzwu7755-ui.github.io" target="_blank" rel="noreferrer">
-                <span>Repo</span>
+                <span>代码仓库</span>
                 github.com/yzwu7755-ui/yzwu7755-ui.github.io
               </a>
               <a href="https://personal-agent-api.yzwu7755.workers.dev/" target="_blank" rel="noreferrer">
-                <span>API</span>
+                <span>问答接口</span>
                 personal-agent-api.yzwu7755.workers.dev
               </a>
             </div>
 
             <div class="deploy-steps">
-              <div><span>01</span>确认 GitHub 仓库为 Public</div>
-              <div><span>02</span>Pages 使用 `main` / `/root`</div>
+              <div><span>01</span>确认代码仓库为公开仓库</div>
+              <div><span>02</span>静态托管使用主分支根目录</div>
               <div><span>03</span>同步发布副本并提交</div>
-              <div><span>04</span>推送到 GitHub 后等待 Pages 构建</div>
+              <div><span>04</span>推送到代码仓库后等待静态站点构建</div>
             </div>
 
             <pre class="command-block"><code>cd /Users/wuzhenyuan/Documents/Codex/2026-08-01/buy/work/github-pages-site

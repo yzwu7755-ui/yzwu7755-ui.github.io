@@ -248,7 +248,9 @@ h1 {
   margin-bottom: 24px;
   color: var(--cyan);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: clamp(28px, 5vw, 54px);
+  font-size: clamp(18px, 2.6vw, 34px);
+  font-weight: 800;
+  line-height: 1.35;
   animation: cursorBlink 1.1s steps(2, start) infinite;
 }
 
@@ -285,6 +287,39 @@ h3 {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.8;
+}
+
+.hero-metrics {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 680px;
+  margin-top: 22px;
+}
+
+.hero-metrics span {
+  border: 1px solid rgba(255, 156, 62, 0.22);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 156, 62, 0.1), rgba(243, 92, 146, 0.045)),
+    rgba(255, 255, 255, 0.025);
+  color: var(--muted);
+  padding: 8px 12px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.hero-metrics strong {
+  margin-right: 4px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
 }
 
 .hero-actions {
@@ -1224,7 +1259,7 @@ h3 {
 
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
